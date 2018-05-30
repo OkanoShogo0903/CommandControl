@@ -15,30 +15,14 @@ class Behavior():
 
 
     def Talk(self, text):
-        ''' args: <tuple> (str,str,...) , test: str '''
-        '''
-        if args != None:
-            for i in args:
-                # search iterater's dictation
-                #print(i)
-                _dict = self.getDict(i)
-                if _dict != None:
-                    #print("_dict :", _dict)
-                    key = self.getKeyFromText(text)
-                    #if key in _dict:
-                    text = self.variable_pattern.sub(_dict[key],text)
-
-            #text = self.variable_pattern.sub(*args,text)
-        else:
-            pass
-        '''
-
         print("A :", text)
         self.picoSpeaker(text)
+        return True
 
 
     def customTalk(self, text, **args):
-        ''' args: <tuple> (str,str,...) , test: str
+        '''
+        args    : <tuple> (str,str,...) , test: str
         example :
             Q : Where is the desk locate?
                 term    args : {'placement':'desk'}
@@ -83,7 +67,10 @@ class Behavior():
         ''' !!! pico speeck !!! '''
         if os.name == 'posix': # linux
             voice_cmd = '/usr/bin/picospeaker %s' %say_text
-            subprocess.call(voice_cmd.strip().split(' '))
+            try:
+                subprocess.call(voice_cmd.strip().split(' '))
+            except:
+                print("[ERRER] pico speaker is not active")
 
 
     def getDict(self, _value):
@@ -100,29 +87,86 @@ class Behavior():
         return capture[0]
 
 
-    def isCheckPatternVariablePair(captures, checklist):
-        for i in captures:
-            pass
-            #if i['placement'] == checklist[]:
-        return False
+    def CompareThings(self, is_weight=False, is_size=False, *obj):
+        ''' This func return matched object name '''
+        print (obj) # taple
+        if is_weight == True:
+            return 'weight'
+        elif is_size == True:
+            return 'size'
+        else:
+            # TODO raise err
+            return None
 
 
 # --------------[One's own callback function START]---------------------->
 
     def TalkTime(self):
         self.Talk('it is ' + datetime.datetime.now().strftime('%H %M')) # %H mean hour <str number> ,%M mean minute <str number>
+        return True
 
 
     def TalkToday(self):
         self.Talk('today is ' + datetime.datetime.now().strftime('%A')) # %A mean day of the week <str>
+        return True
 
 
     def HowManyObjInTheRoom(self, text, **args):
         import random
         self.Talk(text=str(random.randint(1, 3))) # randint(a, b) -> a <= n <= b
+        return True
+
 
     def HowManyObjAreThere(self, text, **args):
         ''' object question '''
         #$objq = How many {category} are there?
         import random
         self.Talk(text=str(random.randint(1, 3))) # randint(a, b) -> a <= n <= b
+        return True
+
+
+    def PassComparedResult(self, **args):
+        #print("args",args) # {'adja': 'biggest', 'category': 'fruits'}
+        object = []
+        comparison = ''
+        # Devide object from comparison
+        for k,v in args.items():
+            k_match = re.search(r'\w+[0-9]',k)
+            if k_match != None:
+                object.append(v)
+            else:
+                comparison = v
+            #try:
+            #except AttributeError:
+
+        # Detect compare types
+        is_size = False
+        is_weight = False
+        if comparison == 'biggest' or comparison == 'smallest' or\
+        comparison == 'bigger' or comparison == 'smaller':
+            is_size = True
+        elif comparison == 'heaviest' or comparison == 'lightest' or\
+        comparison == 'heavier' or comparison == 'lighter':
+            is_weight = True
+
+        #print(object)
+        #print(comparison)
+
+        text = self.CompareThings(*object, is_size=is_size, is_weight=is_weight)
+        self.Talk(text=text)
+        return True
+
+
+    def TwoObjectComparison(self, **args):
+        print(args)
+        '''
+        text = CompareThings(args)
+        self.Talk(text=text)
+        '''
+        return True
+
+
+    def UnimplementedCountReply(self, **args):
+        import random
+        self.Talk(text=str(random.randint(1, 2))) # randint(a, b) -> a <= n <= b
+        return True

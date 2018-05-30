@@ -11,7 +11,11 @@ import xml.etree.ElementTree as ET
 location_list = []
 object_list = []
 name_list = []
+crowd_state_list = []
+color_list = []
+gestures_list = []
 origins_sum_list = []
+comparison = []
 
 placement_list = []
 beacon_list = []
@@ -74,7 +78,24 @@ def setReferredGlobalValue():
     beacon_list = [i for i in location_list if 'isBeacon' in i]
 
     global origins_sum_list
-    origins_sum_list = location_list + object_list + name_list
+    origins_sum_list = \
+            location_list + object_list + name_list + \
+            gestures_list + color_list + crowd_state_list
+
+    global comparison
+    # reference
+    #   $adjr = heavier | smaller | bigger | lighter
+    #   $adja = heaviest | smallest | biggest | lightest
+    comparison = [\
+        {'adja':'heaviest'},\
+        {'adja':'lightest'},\
+        {'adja':'smallest'},\
+        {'adja':'biggest'},\
+        {'adjr':'heavier'},\
+        {'adjr':'lighter'},\
+        {'adjr':'smaller'},\
+        {'adjr':'bigger'},\
+    ]
 
 def getXmldata():
     ''' get (object|location|name) info from xml files '''
@@ -105,6 +126,28 @@ def getXmldata():
                 _dict['category'] = child.attrib['name']
                 object_list.append(_dict)
 
+    with open(add_path + 'Crowd.xml', 'r') as xml_file:
+        root = ET.fromstring(xml_file.read())
+        for child in root: # reference to child node
+            _dict = {}
+            _dict.update(child.attrib)
+            crowd_state_list.append(_dict)
+
+    with open(add_path + 'Color.xml', 'r') as xml_file:
+        root = ET.fromstring(xml_file.read())
+        for child in root: # reference to child node
+            _dict = {}
+            _dict.update(child.attrib)
+            color_list.append(_dict)
+
+
+    with open(add_path + 'Gestures.xml', 'r') as xml_file:
+        root = ET.fromstring(xml_file.read())
+        for child in root: # reference to child node
+            _dict = {}
+            _dict.update(child.attrib)
+            gestures_list.append(_dict)
+
 
 def init():
     ''' call once '''
@@ -117,6 +160,9 @@ def init():
     #print("[locate list]",location_list)
     #print("[object list]",object_list)
     #print("[name list]",name_list)
+    #print("[crowd list]",crowd_state_list)
+    #print("[color list]",color_list)
+    #print("[gesture list]",gestures_list)
 
     setPatterns()
     setReferredGlobalValue()

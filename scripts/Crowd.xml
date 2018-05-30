@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<crowd>
+  <people people="children" />
+  <people people="adults" />
+  <people people="elders" />
+  <people people="males" />
+  <people people="females" />
+  <people people="men" />
+  <people people="women" />
+  <people people="boys" />
+  <people people="girls" />
+  <gprsn gprsn="male" />
+  <gprsn gprsn="female" />
+  <gprsn gprsn="man" />
+  <gprsn gprsn="woman" />
+  <gprsn gprsn="boy" />
+  <gprsn gprsn="girl" />
+  <gprsng gprsng="male or female" />
+  <gprsng gprsng="man or woman" />
+  <gprsng gprsng="boy or girl" />
+  <posppl posppl="standing or sitting" />
+  <posppl posppl="standing or lying down" />
+  <posppl posppl="sitting or lying down" />
+  <posprs posprs="standing" />
+  <posprs posprs="sitting" />
+  <posprs posprs="lying down" />
+</crowd>
