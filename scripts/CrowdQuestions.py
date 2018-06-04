@@ -58,9 +58,9 @@ data = [\
     {\
         # ???
         # $crowdq = How many people in the crowd are ($posppl | {gesture})?
-        'pattern':[re.compile(r'How many people in the crowd are (?P<posppl>\w+)', re.IGNORECASE),\
-                re.compile(r'How many people in the crowd are (?P<peoprs>\w+)', re.IGNORECASE),\
-                re.compile(r'How many people in the crowd are (?P<gesture>\w+)', re.IGNORECASE)],\
+        'pattern':[re.compile(r'How many people in the crowd are (?P<posppl>(?:\w+(?: |$)){1,256})', re.IGNORECASE),\
+                re.compile(r'How many people in the crowd are (?P<peoprs>(?:\w+(?: |$)){1,256})', re.IGNORECASE),\
+                re.compile(r'How many people in the crowd are (?P<gesture>(?:\w+(?: |$)){1,256})', re.IGNORECASE)],\
         'callback':behavior.UnimplementedCountReply,\
     },\
     {\
@@ -75,7 +75,7 @@ data = [\
     {\
         # call one's own function
         # $crowdq = Was the person $posprs a $gprsng?
-        'pattern':[re.compile(r'Was the person (?P<posprs>\w+) a (?P<gprsng>\w+)', re.IGNORECASE)],\
+        'pattern':[re.compile(r'Was the person (?P<posprs>(?:\w+ ){1,256})a (?P<gprsng>(?:\w+(?: |$)){1,256})', re.IGNORECASE)],\
         'callback':behavior.UnimplementedCountReply,\
         # $gprsng = male or female | man or woman | boy or girl
         # $posprs = standing | sitting | lying down
@@ -83,8 +83,8 @@ data = [\
     {\
         # ???
         # $crowdq = Tell me if the person ($posprs | {gesture}) was a $gprsn?
-        'pattern':[re.compile(r'Tell me if the person (?P<posprs>\w+) was a (?P<gprsn>\w+)', re.IGNORECASE),\
-                re.compile(r'Tell me if the person (?P<gesture>\w+) was a (?P<gprsn>\w+)', re.IGNORECASE)],\
+        'pattern':[re.compile(r'Tell me if the person (?P<posprs>(?:\w+ ){1,256})was a (?P<gprsn>(?:\w+(?: |$)){1,256})', re.IGNORECASE),\
+                re.compile(r'Tell me if the person (?P<gesture>(?:\w+ ){1,256})was a (?P<gprsn>(?:\w+(?: |$)){1,256})', re.IGNORECASE)],\
         'callback':behavior.UnimplementedCountReply,\
         # $posprs = standing | sitting | lying down
     },\

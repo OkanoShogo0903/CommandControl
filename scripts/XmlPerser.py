@@ -77,15 +77,7 @@ def setReferredGlobalValue():
     global beacon_list
     beacon_list = [i for i in location_list if 'isBeacon' in i]
 
-    global origins_sum_list
-    origins_sum_list = \
-            location_list + object_list + name_list + \
-            gestures_list + color_list + crowd_state_list
-
     global comparison
-    # reference
-    #   $adjr = heavier | smaller | bigger | lighter
-    #   $adja = heaviest | smallest | biggest | lightest
     comparison = [\
         {'adja':'heaviest'},\
         {'adja':'lightest'},\
@@ -96,6 +88,11 @@ def setReferredGlobalValue():
         {'adjr':'smaller'},\
         {'adjr':'bigger'},\
     ]
+    global origins_sum_list
+    origins_sum_list = \
+            location_list + object_list + name_list + \
+            gestures_list + color_list + crowd_state_list + comparison
+
 
 def getXmldata():
     ''' get (object|location|name) info from xml files '''
