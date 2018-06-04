@@ -2,7 +2,7 @@
 # reference : https://github.com/kyordhel/GPSRCmdGen
 
 # [ParameterStart]----------------------->
-IS_ROS_ACTIVE = True 
+IS_ROS_ACTIVE = False
 # [ParameterEnd]------------------------
 
 import re
@@ -46,8 +46,12 @@ def SpeechTextToBehavior(text, spr = True, gpsr = False):
             if sre_match is not None:
                 #captures = sre_match.groups()
                 captures = sre_match.groupdict() # when capture is empty -> capture:{}
-                #print("captures     :",captures)
-                #print("p['pattern'] :",p) # capture
+
+                captures = removeHipSpace(captures)
+
+                print("captures     :",captures)
+                print("p['pattern'] :",p) # capture
+
                 if isSimilarRegexpBlock(captures):
                     if 'text' in q_data: # or text element is existting
                         #handler(p['callback'], p['text'])
@@ -68,6 +72,18 @@ def SpeechTextToBehavior(text, spr = True, gpsr = False):
 
 def handler(func,*args):
     return func(*args)
+
+
+def removeHipSpace(captures):
+    '''
+    remove space for compare match
+    "side board " -> "side board"
+    '''
+    mirror = captures
+    for k,v in captures.items(): # dict.items() : return key,value
+        if v[-1] == " ":
+            mirror[k] = v[:-1]
+    return mirror
 
 
 def TrimNumberPart(captures):
@@ -96,6 +112,7 @@ def isSimilarRegexpBlock(captures):
     [SPECIFICATION]
         Right -> return True
         Wrong -> return False
+
     '''
 
     # TODO minaosi
@@ -104,8 +121,8 @@ def isSimilarRegexpBlock(captures):
         # remove obviously strange things
         # example : {'room':'None'},{'name','how'}
         for i in xml_data.origins_sum_list + xml_data.comparison:
-            # TODO remove captured_key's number with regexp
             captured_key = num_pattern.sub('',captured_key)
+                
             if captured_key in i: # mean location
                 if i[captured_key] == captured_value:
                     correct_count += 1
@@ -116,7 +133,7 @@ def isSimilarRegexpBlock(captures):
     #else:
         #return False
 
-    #print("---",correct_count)
+    print("---",correct_count)
     if correct_count == len(captures): # mean all hit
         return True
     else:
@@ -154,7 +171,7 @@ if __name__ == '__main__':
     #SpeechTextToBehavior(text="How many people in the crowd are waving?")
     #SpeechTextToBehavior(text="Tell me the number of boys in the crowd")
     #SpeechTextToBehavior(text="Tell me if the person waving was a man?")
-    SpeechTextToBehavior(text="Tell me if the person standing was a man?")
+    #SpeechTextToBehavior(text="Tell me if the person standing was a man?")
     #SpeechTextToBehavior(text="Tell me how many people were wearing red")
     # pre fix
     #SpeechTextToBehavior(text="How many people in the crowd are standing or sitting?")
@@ -165,7 +182,7 @@ if __name__ == '__main__':
     #SpeechTextToBehavior(text="Where can I find the apple?")
     #SpeechTextToBehavior(text="How many apple are there?") # false
     #SpeechTextToBehavior(text="How many fruits are there?")
-    SpeechTextToBehavior(text="How many snacks are in the desk?")
+    #SpeechTextToBehavior(text="How many snacks are in the desk?")
     #SpeechTextToBehavior(text="Which is the biggest fruits?")
     #SpeechTextToBehavior(text="Between the apple and melon, which one is bigger?")
     #SpeechTextToBehavior(text="Where can I find the pasta")
@@ -176,9 +193,10 @@ if __name__ == '__main__':
     # ---ArenaQuestions---
     # ok
     #SpeechTextToBehavior(text="Where is the foo locate?")
-    SpeechTextToBehavior(text="How many freezer are in the kitchen?")
-    #SpeechTextToBehavior(text="In which room is the armchair?")
-    #SpeechTextToBehavior(text="In which room is the sideboard?")
+    SpeechTextToBehavior(text="Where is the M and M's locate?")
+    #SpeechTextToBehavior(text="How many freezer are in the kitchen?")
+    SpeechTextToBehavior(text="In which room is the Robo O's?")
+    SpeechTextToBehavior(text="In which room is the tuna fish?")
     # pre fix
     #SpeechTextToBehavior(text="How many freezer are in the bedroom?")
 

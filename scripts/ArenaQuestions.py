@@ -22,20 +22,12 @@ import re
 #import os, sys
 #print(os.getcwd())
 import XmlPerser as xml_data
-
 behavior = Behavior.Behavior()
 data = [\
     {\
         # $arenaq = Where is the {name} located?
         #'pattern':re.compile(r'Where is the %s locate'% xml_data.name_pattern, re.IGNORECASE),\
-        'pattern':[re.compile(r'Where is the (?P<name>\w+) locate', re.IGNORECASE)],\
-        'pattern_variable':{'name':'room'},\
-        'text':'it in $room',\
-        'callback':behavior.customTalk,\
-    },\
-    {\
-        # $arenaq = Where is the {name} located?
-        'pattern':[re.compile(r'Where is the (?P<name>\w+) locate', re.IGNORECASE)],\
+        'pattern':[re.compile(r'Where is the (?P<name>(?:\w+ ){1,256})locate', re.IGNORECASE)],\
         'pattern_variable':{'name':'room'},\
         'text':'it in $room',\
         'callback':behavior.customTalk,\
@@ -43,29 +35,21 @@ data = [\
     {\
         # $arenaq = In which room is the {name}?
         #'pattern':re.compile(r'In which room is the %s'% xml_data.name_pattern, re.IGNORECASE),\
-        'pattern':[re.compile(r'In which room is the (?P<name>\w+)', re.IGNORECASE)],\
-        'pattern_variable':{'name':'room'},\
-        'text':'it in $room',\
-        'callback':behavior.customTalk,\
-    },\
-    {\
-        # $arenaq = In which room is the {name}?
-        #'pattern':re.compile(r'In which room is the %s'% xml_data.name_pattern, re.IGNORECASE),\
-        'pattern':[re.compile(r'In which room is the (?P<name>\w+)', re.IGNORECASE)],\
+                'pattern':[re.compile(r'In which room is the (?P<name>(?:\w+(?: |$|)){1,256})', re.IGNORECASE)],\
         'pattern_variable':{'name':'room'},\
         'text':'it in $room',\
         'callback':behavior.customTalk,\
     },\
     {\
         # $arenaq = How many doors does the {room} have?
-        'pattern':[re.compile(r'How many doors does the (?P<name>\w+) have', re.IGNORECASE)],\
+        'pattern':[re.compile(r'How many doors does the (?P<name>(?:\w+(?: |$|)){1,256})have', re.IGNORECASE)],\
         #'pattern_variable':{'name':'room'},\
         'text':'it have $random',\
         'callback':behavior.HowManyObjInTheRoom,\
     },\
     {\
         # $arenaq = How many ({name} | {name}) are in the {room}?
-        'pattern':[re.compile(r'How many (?P<name>\w+) are in the (?P<room>\w+)', re.IGNORECASE)],\
+        'pattern':[re.compile(r'How many (?P<name>(?:\w+ ){1,256})are in the (?P<room>(?:\w+(?: |$|)){1,256})', re.IGNORECASE)],\
         'text':'',\
         'callback':behavior.HowManyObjInTheRoom,\
     },\
