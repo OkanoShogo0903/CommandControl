@@ -42,7 +42,7 @@ def SpeechTextToBehavior(text, spr = True, gpsr = False):
     # call a matching pattern's callback function with capture args
     for q_data in sum_pattern:
         for p in q_data['pattern']:
-            sre_match = p.search(text)
+            sre_match = p.search(text) # capture
             if sre_match is not None:
                 #captures = sre_match.groups()
                 captures = sre_match.groupdict() # when capture is empty -> capture:{}
