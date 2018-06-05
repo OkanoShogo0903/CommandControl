@@ -15,11 +15,8 @@ crowd_state_list = []
 color_list = []
 gestures_list = []
 origins_sum_list = []
-comparison = []
+comparison_list = []
 
-placement_pattern = ''
-beacon_pattern = ''
-room_pattern = ''
 add_path = '' # To absorb the difference of the os
 
 def absorbOsPathDifference():
@@ -35,41 +32,9 @@ def absorbOsPathDifference():
         add_path = ''
 
 
-def setPatterns():
-    '''
-    sort about ...
-        category,gesture,Location,name,object,quiestion,void
-        beacon,aobject,female,kobject,male,placement,room,sobject
-    '''
-
-    global placement_pattern
-    for i in location_list:
-        if 'isPlacement' in i:
-            placement_pattern += str(i.get('name')) + '|'
-    else:
-        placement_pattern = placement_pattern[:-1] # delete last '|'
-        placement_pattern = '(' + placement_pattern + ')'
-
-    global room_pattern
-    for i in location_list:
-        if 'room' in i:
-            room_pattern += str(i.get('room')) + '|'
-    else:
-        room_pattern = room_pattern[:-1] # delete last '|'
-        room_pattern = '(' + room_pattern + ')'
-
-    global beacon_pattern
-    for i in location_list:
-        if 'isBeacon' in i:
-            beacon_pattern += str(i.get('name')) + '|' # (sideboard|dinign table|chair) ok!
-    else:
-        beacon_pattern = beacon_pattern[:-1] # delete last '|'
-        beacon_pattern = '(' + beacon_pattern + ')'
-
-
 def setReferredGlobalValue():
-    global comparison
-    comparison = [\
+    global comparison_list
+    comparison_list = [\
         {'adja':'heaviest'},\
         {'adja':'lightest'},\
         {'adja':'smallest'},\
@@ -82,7 +47,7 @@ def setReferredGlobalValue():
     global origins_sum_list
     origins_sum_list = \
             location_list + object_list + name_list + \
-            gestures_list + color_list + crowd_state_list + comparison
+            gestures_list + color_list + crowd_state_list + comparison_list
 
 
 def getXmldata():
@@ -152,17 +117,9 @@ def init():
     #print("[color list]",color_list)
     #print("[gesture list]",gestures_list)
 
-    setPatterns()
+    # set global value
     setReferredGlobalValue()
 
-    #for  in :
-
-    #print(Expansion(*location_list))
-    #print(map(lambda s:s['name'],*location_list))
-    #hoge = location_list['isPlacement']
-    #map(lambda s:s+'|',hoge)
-    #placement_pattern = '(' + reduce(Add, location_list['map']) + ')'
-    #print(placement_pattern)
 
 # set params in init function
 init()

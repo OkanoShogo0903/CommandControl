@@ -202,7 +202,7 @@ if __name__ == '__main__':
 
     # ---ArenaQuestions---
     # ok
-    #SpeechTextToBehavior(text="Where is the foo locate")
+    #SpeechTextToBehavior(text="Where is the foo locate") # false
     #SpeechTextToBehavior(text="How many freezer are in the kitchen")
     #SpeechTextToBehavior(text="In which room is the tuna fish")
     #SpeechTextToBehavior(text="Where is the M and M's locate")
