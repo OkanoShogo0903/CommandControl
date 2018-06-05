@@ -17,9 +17,6 @@ gestures_list = []
 origins_sum_list = []
 comparison = []
 
-placement_list = []
-beacon_list = []
-
 placement_pattern = ''
 beacon_pattern = ''
 room_pattern = ''
@@ -71,12 +68,6 @@ def setPatterns():
 
 
 def setReferredGlobalValue():
-    global placement_list
-    placement_list = [i for i in location_list if 'isPlacement' in i]
-    #print(placement_list)
-    global beacon_list
-    beacon_list = [i for i in location_list if 'isBeacon' in i]
-
     global comparison
     comparison = [\
         {'adja':'heaviest'},\

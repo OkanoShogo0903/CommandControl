@@ -46,7 +46,7 @@ behavior = Behavior.Behavior()
 data = [\
     {\
         #$objq = How many {category} are there?
-        'pattern':[re.compile(r'How many (?P<category>(?:\w+ ){1,256})are there', re.IGNORECASE)],\
+        'pattern':[re.compile(r'How many (?P<category>.*) are there', re.IGNORECASE)],\
         'pattern_variable':{'beacon':'defaultLocation'},\
         'text':'it in $defaultLocation',\
         'callback':behavior.HowManyObjAreThere,\
@@ -54,7 +54,7 @@ data = [\
     {\
         # TODO color
         #$objq = What's the color of the {kname}?
-        'pattern':[re.compile(r"(?:What's)|(?:What is) the color of the (?P<name>(?:\w+(?: |$)){1,256})", re.IGNORECASE)],\
+        'pattern':[re.compile(r"(?:What's)|(?:What is) the color of the (?P<name>.+)", re.IGNORECASE)],\
         'pattern_variable':{'name':'color'},\
         'text':'color is $color',\
         'callback':behavior.customTalk,\
@@ -64,8 +64,8 @@ data = [\
         # TODO regexfix
         #$objq = How many ({category} | names) are in the {placement}?
         'pattern':[\
-            re.compile(r'How many (?P<category>(?:\w+ |){1,256})are in the (?P<room>(?:\w+(?: |$)){1,256})', re.IGNORECASE),\
-            re.compile(r'How many (?P<category>(?:\w+ |){1,256})are in the (?P<name>(?:\w+(?: |$)){1,256})', re.IGNORECASE),\
+            re.compile(r'How many (?P<category>.+) are in the (?P<room>.+)', re.IGNORECASE),\
+            re.compile(r'How many (?P<category>.+)are in the (?P<name>.+)', re.IGNORECASE),\
             ],\
             #re.compile(r'How many (?P<name>(?:\w+ ){1,256})are in the (?P<room>(?:\w+(?: |$)){1,256})', re.IGNORECASE)] # same to $arenaq = How many ({name} | {name}) are in the {room}?
         'text':'',\
@@ -75,8 +75,8 @@ data = [\
         # TODO nante kotaerunoga iinoka wakaran 
         #$objq = What names are stored in the {placement}?
         'pattern':[\
-                re.compile(r'What names are stored in the (?P<room>(?:\w+(?: |$)){1,256})', re.IGNORECASE),\
-                re.compile(r'What names are stored in the (?P<name>(?:\w+(?: |$)){1,256})', re.IGNORECASE),\
+                re.compile(r'What names are stored in the (?P<room>.+)', re.IGNORECASE),\
+                re.compile(r'What names are stored in the (?P<name>.+)', re.IGNORECASE),\
             ],\
         'pattern_variable':{'room':'name'},\
         'text':'it in $name',\
@@ -84,8 +84,8 @@ data = [\
     },\
     {\
         #$objq = Where can I find the ({name} | {category})?
-        'pattern':  [re.compile(r'Where can I find the (?P<name>(?:\w+(?: |$)){1,256})', re.IGNORECASE),\
-                     re.compile(r'Where can I find the (?P<category>(?:\w+(?: |$)){1,256})', re.IGNORECASE)],\
+        'pattern':  [re.compile(r'Where can I find the (?P<name>.+)', re.IGNORECASE),\
+                     re.compile(r'Where can I find the (?P<category>.+)', re.IGNORECASE)],\
         #'pattern_variable':{'beacon':'defaultLocation'},\
         'text':'it in $defaultLocation',\
         'callback':behavior.customTalk,\
@@ -93,7 +93,7 @@ data = [\
     {\
         # name -> category
         #$objq = What is the category of the {name}?
-        'pattern':[re.compile(r'What is the category of the (?P<name>(?:\w+(?: |$)){1,256})', re.IGNORECASE)],\
+        'pattern':[re.compile(r'What is the category of the (?P<name>.+)', re.IGNORECASE)],\
         #'pattern_variable':{'category':''},\
         'text':'it in $category',\
         'callback':behavior.customTalk,\
@@ -102,7 +102,7 @@ data = [\
         # TODO
         # call one's own function (Yes No question)
         #$objq = Do the {name 1} and {name 2} belong to the same category?
-        'pattern':[re.compile(r'Do the (?P<name1>(?:\w+ ){1,256})are (?P<name2>(?:\w+ ){1,256})belong to the same category', re.IGNORECASE)],\
+        'pattern':[re.compile(r'Do the (?P<name1>.+) are (?P<name2>.+) belong to the same category', re.IGNORECASE)],\
         'pattern_variable':{'beacon':'defaultLocation'},\
         'text':'it in $defaultLocation',\
         'callback':behavior.customTalk,\
@@ -112,8 +112,8 @@ data = [\
         #$objq = Which is the $adja ({category} | name)?
         #$adja = heaviest | smallest | biggest | lightest
         #'pattern':re.compile(r'Which is the (?:heaviest)|(?:smallest)|(?:biggest)|(?:lightest) (?P<category>\w+)|(?P<name>\w+)', re.IGNORECASE),\
-        'pattern':[re.compile(r'Which is the (?P<adja>\w+) (?P<category>(?:\w+(?: |$)){1,256})', re.IGNORECASE),\
-                    re.compile(r'Which is the (?P<adja>\w+) (?P<name>(?:\w+(?: |$)){1,256})', re.IGNORECASE)],\
+        'pattern':[re.compile(r'Which is the (?P<adja>\w+) (?P<category>.+)', re.IGNORECASE),\
+                    re.compile(r'Which is the (?P<adja>\w+) (?P<name>.+)', re.IGNORECASE)],\
         #'pattern_variable':{'beacon':'defaultLocation'},\
         'callback':behavior.PassComparedResult,\
         #'callback':behavior.TwoObjectComparison,\
@@ -124,7 +124,7 @@ data = [\
         #$objq = Between the {name 1} and {name 2}, which one is $adjr?
         #$adjr = heavier | smaller | bigger | lighter
         # TODO name1.2 will block by isSimilarRegexpBlock
-        'pattern':[re.compile(r'Between the (?P<name1>(?:\w+ ){1,256}) and (?P<name2>(?:\w+(?: |,)){1,256})which one is (?P<adjr>\w+)', re.IGNORECASE)],\
+        'pattern':[re.compile(r'Between the (?P<name1>.+) and (?P<name2>.+) which one is (?P<adjr>\w+)', re.IGNORECASE)],\
         #'pattern_variable':{'beacon':'defaultLocation'},\
         #'callback':behavior.TwoObjectComparison,\
         'callback':behavior.PassComparedResult,\

@@ -27,7 +27,7 @@ data = [\
     {\
         # $arenaq = Where is the {name} located?
         #'pattern':re.compile(r'Where is the %s locate'% xml_data.name_pattern, re.IGNORECASE),\
-        'pattern':[re.compile(r'Where is the (?P<name>(?:\w+ ){1,256})locate', re.IGNORECASE)],\
+        'pattern':[re.compile(r'Where is the (?P<name>.+) locate', re.IGNORECASE)],\
         'pattern_variable':{'name':'room'},\
         'text':'it in $room',\
         'callback':behavior.customTalk,\
@@ -35,21 +35,21 @@ data = [\
     {\
         # $arenaq = In which room is the {name}?
         #'pattern':re.compile(r'In which room is the %s'% xml_data.name_pattern, re.IGNORECASE),\
-                'pattern':[re.compile(r'In which room is the (?P<name>(?:\w+(?: |$|)){1,256})', re.IGNORECASE)],\
+        'pattern':[re.compile(r'In which room is the (?P<name>.+)', re.IGNORECASE)],\
         'pattern_variable':{'name':'room'},\
         'text':'it in $room',\
         'callback':behavior.customTalk,\
     },\
     {\
         # $arenaq = How many doors does the {room} have?
-        'pattern':[re.compile(r'How many doors does the (?P<name>(?:\w+(?: |$|)){1,256})have', re.IGNORECASE)],\
+        'pattern':[re.compile(r'How many doors does the (?P<name>.+) have', re.IGNORECASE)],\
         #'pattern_variable':{'name':'room'},\
         'text':'it have $random',\
         'callback':behavior.HowManyObjInTheRoom,\
     },\
     {\
         # $arenaq = How many ({name} | {name}) are in the {room}?
-        'pattern':[re.compile(r'How many (?P<name>(?:\w+ ){1,256})are in the (?P<room>(?:\w+(?: |$|)){1,256})', re.IGNORECASE)],\
+        'pattern':[re.compile(r'How many (?P<name>.+) are in the (?P<room>.+)', re.IGNORECASE)],\
         'text':'',\
         'callback':behavior.HowManyObjInTheRoom,\
     },\

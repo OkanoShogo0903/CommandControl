@@ -49,7 +49,7 @@ data = [\
     {\
         # $crowdq = How many $people are in the crowd?
         # call one's own function
-        'pattern':[re.compile(r'How many (?P<people>\w+) are in the crowd', re.IGNORECASE)],\
+        'pattern':[re.compile(r'How many (?P<people>.+) are in the crowd', re.IGNORECASE)],\
         'callback':behavior.UnimplementedCountReply,\
         # $people = $appl | $gppl
         # $appl   = children | adults | elders
@@ -58,15 +58,15 @@ data = [\
     {\
         # ???
         # $crowdq = How many people in the crowd are ($posppl | {gesture})?
-        'pattern':[re.compile(r'How many people in the crowd are (?P<posppl>(?:\w+(?: |$)){1,256})', re.IGNORECASE),\
-                re.compile(r'How many people in the crowd are (?P<peoprs>(?:\w+(?: |$)){1,256})', re.IGNORECASE),\
-                re.compile(r'How many people in the crowd are (?P<gesture>(?:\w+(?: |$)){1,256})', re.IGNORECASE)],\
+        'pattern':[re.compile(r'How many people in the crowd are (?P<posppl>.+)', re.IGNORECASE),\
+                re.compile(r'How many people in the crowd are (?P<peoprs>.+)', re.IGNORECASE),\
+                re.compile(r'How many people in the crowd are (?P<gesture>.+)', re.IGNORECASE)],\
         'callback':behavior.UnimplementedCountReply,\
     },\
     {\
         # call one's own function
         # $crowdq = Tell me the number of $people in the crowd
-        'pattern':[re.compile(r'Tell me the number of (?P<people>\w+) in the crowd', re.IGNORECASE)],\
+        'pattern':[re.compile(r'Tell me the number of (?P<people>.+) in the crowd', re.IGNORECASE)],\
         'callback':behavior.UnimplementedCountReply,\
         # $people = $appl | $gppl
         # $appl   = children | adults | elders
@@ -75,7 +75,7 @@ data = [\
     {\
         # call one's own function
         # $crowdq = Was the person $posprs a $gprsng?
-        'pattern':[re.compile(r'Was the person (?P<posprs>(?:\w+ ){1,256})a (?P<gprsng>(?:\w+(?: |$)){1,256})', re.IGNORECASE)],\
+        'pattern':[re.compile(r'Was the person (?P<posprs>.+) a (?P<gprsng>.+)', re.IGNORECASE)],\
         'callback':behavior.UnimplementedCountReply,\
         # $gprsng = male or female | man or woman | boy or girl
         # $posprs = standing | sitting | lying down
@@ -83,8 +83,8 @@ data = [\
     {\
         # ???
         # $crowdq = Tell me if the person ($posprs | {gesture}) was a $gprsn?
-        'pattern':[re.compile(r'Tell me if the person (?P<posprs>(?:\w+ ){1,256})was a (?P<gprsn>(?:\w+(?: |$)){1,256})', re.IGNORECASE),\
-                re.compile(r'Tell me if the person (?P<gesture>(?:\w+ ){1,256})was a (?P<gprsn>(?:\w+(?: |$)){1,256})', re.IGNORECASE)],\
+        'pattern':[re.compile(r'Tell me if the person (?P<posprs>.+)was a (?P<gprsn>.+)', re.IGNORECASE),\
+                re.compile(r'Tell me if the person (?P<gesture>.+)was a (?P<gprsn>.+)', re.IGNORECASE)],\
         'callback':behavior.UnimplementedCountReply,\
         # $posprs = standing | sitting | lying down
     },\

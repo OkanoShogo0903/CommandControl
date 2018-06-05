@@ -167,16 +167,16 @@ if __name__ == '__main__':
     #SpeechTextToBehavior(text="")
     # ---CrowdQuestions---
     # ok
-    #SpeechTextToBehavior(text="How many elders are in the crowd?")
+    #SpeechTextToBehavior(text="How many elders are in the crowd")
     #SpeechTextToBehavior(text="How many people in the crowd are waving")
     #SpeechTextToBehavior(text="Tell me the number of boys in the crowd")
     #SpeechTextToBehavior(text="Tell me if the person waving was a man")
     #SpeechTextToBehavior(text="Tell me if the person standing was a man")
     #SpeechTextToBehavior(text="Tell me how many people were wearing red")
     # pre fix
-    #SpeechTextToBehavior(text="How many people in the crowd are standing or sitting?")
-    #SpeechTextToBehavior(text="Was the person sitting a man or woman?") # woman -> man
-    #SpeechTextToBehavior(text="Was the person sitting a man or woman?") # multi ward
+    #SpeechTextToBehavior(text="How many people in the crowd are standing or sitting")
+    #SpeechTextToBehavior(text="Was the person sitting a man or woman") # woman -> man
+    #SpeechTextToBehavior(text="Was the person sitting a man or woman") # multi ward
     # ---ObjectQuestions---
     # ok
     #SpeechTextToBehavior(text="How many tuna fish are there?") # false
@@ -202,12 +202,11 @@ if __name__ == '__main__':
 
     # ---ArenaQuestions---
     # ok
-    #SpeechTextToBehavior(text="Where is the foo locate?")
-    #SpeechTextToBehavior(text="How many freezer are in the kitchen?")
-    #SpeechTextToBehavior(text="In which room is the tuna fish?")
-    # pre fix
-    #SpeechTextToBehavior(text="Where is the M and M's locate?")
-    #SpeechTextToBehavior(text="In which room is the Robo O's?")
+    #SpeechTextToBehavior(text="Where is the foo locate")
+    #SpeechTextToBehavior(text="How many freezer are in the kitchen")
+    #SpeechTextToBehavior(text="In which room is the tuna fish")
+    #SpeechTextToBehavior(text="Where is the M and M's locate")
+    #SpeechTextToBehavior(text="In which room is the Robo O's")
 
     # ---PredefinedQuestions---
     #SpeechTextToBehavior("When was invented the B programming language")
