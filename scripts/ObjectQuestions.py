@@ -46,7 +46,7 @@ behavior = Behavior.Behavior()
 data = [\
     {\
         #$objq = How many {category} are there?
-        'pattern':[re.compile(r'How many (?P<category>.*) are there', re.IGNORECASE)],\
+        'pattern':[re.compile(r'How many (?P<category>.+) are there', re.IGNORECASE)],\
         'pattern_variable':{'beacon':'defaultLocation'},\
         'text':'it in $defaultLocation',\
         'callback':behavior.HowManyObjAreThere,\
@@ -102,10 +102,10 @@ data = [\
         # TODO
         # call one's own function (Yes No question)
         #$objq = Do the {name 1} and {name 2} belong to the same category?
-        'pattern':[re.compile(r'Do the (?P<name1>.+) are (?P<name2>.+) belong to the same category', re.IGNORECASE)],\
+        'pattern':[re.compile(r'Do the (?P<name1>.+) and (?P<name2>.+) belong to the same category', re.IGNORECASE)],\
         'pattern_variable':{'beacon':'defaultLocation'},\
         'text':'it in $defaultLocation',\
-        'callback':behavior.customTalk,\
+        'callback':behavior.belongToSameCategory,\
     },\
     {\
         # call one's own function (Yes No question)
@@ -115,7 +115,7 @@ data = [\
         'pattern':[re.compile(r'Which is the (?P<adja>\w+) (?P<category>.+)', re.IGNORECASE),\
                     re.compile(r'Which is the (?P<adja>\w+) (?P<name>.+)', re.IGNORECASE)],\
         #'pattern_variable':{'beacon':'defaultLocation'},\
-        'callback':behavior.PassComparedResult,\
+        'callback':behavior.whichIsTheCompare,\
         #'callback':behavior.TwoObjectComparison,\
     },\
     {\
@@ -126,7 +126,7 @@ data = [\
         # TODO name1.2 will block by isSimilarRegexpBlock
         'pattern':[re.compile(r'Between the (?P<name1>.+) and (?P<name2>.+) which one is (?P<adjr>\w+)', re.IGNORECASE)],\
         #'pattern_variable':{'beacon':'defaultLocation'},\
-        #'callback':behavior.TwoObjectComparison,\
-        'callback':behavior.PassComparedResult,\
+        #'callback':behavior.twoObjectComparison,\
+        'callback':behavior.,\
     },\
 ]

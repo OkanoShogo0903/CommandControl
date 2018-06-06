@@ -196,9 +196,10 @@ if __name__ == '__main__':
     #SpeechTextToBehavior(text="How many fruits are there?")
     # pre fix
     #SpeechTextToBehavior(text="What is the color of the apple")
-    #SpeechTextToBehavior(text="Between the apple and melon, which one is bigger")
-    #SpeechTextToBehavior(text="Do the apple are melon belong to the same category")
-    #SpeechTextToBehavior(text="Which is the biggest fruits")
+    #SpeechTextToBehavior(text="Do the apple and melon belong to the same category")
+    #SpeechTextToBehavior(text="Do the apple and tuna fish belong to the same category")
+    SpeechTextToBehavior(text="Which is the biggest fruits")
+    SpeechTextToBehavior(text="Between the apple and melon, which one is bigger")
 
     # ---ArenaQuestions---
     # ok
