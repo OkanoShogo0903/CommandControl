@@ -14,17 +14,17 @@ import ArenaQuestions
 import ObjectQuestions
 import CrowdQuestions
 import XmlPerser as xml_data
-# for ros
+# For ros ----------->
 if IS_ROS_ACTIVE is True:
     import rospy
     from std_msgs.msg import String,Bool
 ''' ROSに音声認識の結果を投げるWORDスレッドを管理するクラス '''
-# SPR
+# SPR --------------->
 predefined_questions = PredefinedQuestions.data
 arena_questions = ArenaQuestions.data
 object_questions = ObjectQuestions.data
 crowd_questions = CrowdQuestions.data
-# GPSR
+# GPSR --------------> None
 
 def SpeechTextToBehavior(text, spr = True, gpsr = False):
     ''' ... from speech text '''
