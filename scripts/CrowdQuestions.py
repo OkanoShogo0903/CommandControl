@@ -58,8 +58,9 @@ data = [\
     {\
         # ???
         # $crowdq = How many people in the crowd are ($posppl | {gesture})?
-        'pattern':[re.compile(r'How many people in the crowd are (?P<posppl>.+)', re.IGNORECASE),\
-                re.compile(r'How many people in the crowd are (?P<peoprs>.+)', re.IGNORECASE),\
+        'pattern':[\
+                re.compile(r'How many people in the crowd are (?P<posppl>.+)', re.IGNORECASE),\
+                re.compile(r'How many people in the crowd are (?P<posprs>.+)', re.IGNORECASE),\
                 re.compile(r'How many people in the crowd are (?P<gesture>.+)', re.IGNORECASE)],\
         'callback':behavior.UnimplementedCountReply,\
     },\

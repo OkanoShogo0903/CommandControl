@@ -2,7 +2,8 @@
 # reference : https://github.com/kyordhel/GPSRCmdGen
 
 # [ParameterStart]----------------------->
-IS_ROS_ACTIVE = True 
+IS_ROS_ACTIVE = False
+is_do_input_test = True
 # [ParameterEnd]------------------------
 
 import re
@@ -146,63 +147,72 @@ if IS_ROS_ACTIVE:
     rospy.spin()
 
 if __name__ == '__main__':
-    pass
+    ''' testcode '''
+    if is_do_input_test is True:
+        string = ''
+        while 1:
+            print('<------------ Inputtable ;) -------------->')
+            if string == 'exit':
+                break
+            else:
+                string = raw_input()
+                SpeechTextToBehavior(text=string)
+    else:
+        pass
+        # ---common err---
+        #SpeechTextToBehavior(text="Where is the baby chair located?")
+        #SpeechTextToBehavior(text="")
+        # ---CrowdQuestions---
+        # ok
+        #SpeechTextToBehavior(text="How many elders are in the crowd")
+        #SpeechTextToBehavior(text="How many people in the crowd are waving")
+        #SpeechTextToBehavior(text="Tell me the number of boys in the crowd")
+        #SpeechTextToBehavior(text="Tell me if the person waving was a man")
+        #SpeechTextToBehavior(text="Tell me if the person standing was a man")
+        #SpeechTextToBehavior(text="Tell me how many people were wearing red")
+        # pre fix
+        #SpeechTextToBehavior(text="How many people in the crowd are standing or sitting")
+        #SpeechTextToBehavior(text="Was the person sitting a man or woman") # woman -> man
+        #SpeechTextToBehavior(text="Was the person sitting a man or woman") # multi ward
+        # ---ObjectQuestions---
+        # ok
+        #SpeechTextToBehavior(text="How many tuna fish are there?") # false
+        #SpeechTextToBehavior(text="How many snacks are there?")
 
-    # <---testcode--->
-    # ---common err---
-    #SpeechTextToBehavior(text="Where is the baby chair located?")
-    #SpeechTextToBehavior(text="")
-    # ---CrowdQuestions---
-    # ok
-    #SpeechTextToBehavior(text="How many elders are in the crowd")
-    #SpeechTextToBehavior(text="How many people in the crowd are waving")
-    #SpeechTextToBehavior(text="Tell me the number of boys in the crowd")
-    #SpeechTextToBehavior(text="Tell me if the person waving was a man")
-    #SpeechTextToBehavior(text="Tell me if the person standing was a man")
-    #SpeechTextToBehavior(text="Tell me how many people were wearing red")
-    # pre fix
-    #SpeechTextToBehavior(text="How many people in the crowd are standing or sitting")
-    #SpeechTextToBehavior(text="Was the person sitting a man or woman") # woman -> man
-    #SpeechTextToBehavior(text="Was the person sitting a man or woman") # multi ward
-    # ---ObjectQuestions---
-    # ok
-    #SpeechTextToBehavior(text="How many tuna fish are there?") # false
-    #SpeechTextToBehavior(text="How many snacks are there?")
+        #SpeechTextToBehavior(text="How many tuna fish are in the kitchen")
+        #SpeechTextToBehavior(text="How many snacks are in the desk")
+        #SpeechTextToBehavior(text="How many snacks are in the kitchen")
 
-    #SpeechTextToBehavior(text="How many tuna fish are in the kitchen")
-    #SpeechTextToBehavior(text="How many snacks are in the desk")
-    #SpeechTextToBehavior(text="How many snacks are in the kitchen")
+        #SpeechTextToBehavior(text="What names are stored in the bathroom cabinet")
 
-    #SpeechTextToBehavior(text="What names are stored in the bathroom cabinet")
+        #SpeechTextToBehavior(text="Where can I find the apple")
+        #SpeechTextToBehavior(text="Where can I find the pasta")
+        #SpeechTextToBehavior(text="Where can I find the toiletries")
+        #SpeechTextToBehavior(text="What is the category of the tuna fish") # food
 
-    #SpeechTextToBehavior(text="Where can I find the apple")
-    #SpeechTextToBehavior(text="Where can I find the pasta")
-    #SpeechTextToBehavior(text="Where can I find the toiletries")
-    #SpeechTextToBehavior(text="What is the category of the tuna fish") # food
+        #SpeechTextToBehavior(text="How many fruits are there?")
 
-    #SpeechTextToBehavior(text="How many fruits are there?")
+        #SpeechTextToBehavior(text="What is the color of the apple")
+        #SpeechTextToBehavior(text="What is the color of the soap")
 
-    #SpeechTextToBehavior(text="What is the color of the apple")
-    #SpeechTextToBehavior(text="What is the color of the soap")
+        #SpeechTextToBehavior(text="Do the apple and melon belong to the same category")
+        #SpeechTextToBehavior(text="Do the apple and tuna fish belong to the same category")
 
-    #SpeechTextToBehavior(text="Do the apple and melon belong to the same category")
-    #SpeechTextToBehavior(text="Do the apple and tuna fish belong to the same category")
+        #SpeechTextToBehavior(text="Which is the heaviest fruits")
 
-    #SpeechTextToBehavior(text="Which is the heaviest fruits")
+        #SpeechTextToBehavior(text="Between the melon and apple, which one is bigger")
+        #SpeechTextToBehavior(text="Between the apple and banana, which one is lighter")
 
-    #SpeechTextToBehavior(text="Between the melon and apple, which one is bigger")
-    #SpeechTextToBehavior(text="Between the apple and banana, which one is lighter")
+        # ---ArenaQuestions---
+        # ok
+        #SpeechTextToBehavior(text="Where is the M and M's locate")
+        #SpeechTextToBehavior(text="In which room is the Robo O's")
+        #SpeechTextToBehavior(text="How many choco flakes are in the bedroom")
+        #SpeechTextToBehavior(text="How many choco flakes are in the kitchen")
+        #SpeechTextToBehavior(text="How many doors does the bedroom have")
 
-    # ---ArenaQuestions---
-    # ok
-    #SpeechTextToBehavior(text="Where is the M and M's locate")
-    #SpeechTextToBehavior(text="In which room is the Robo O's")
-    #SpeechTextToBehavior(text="How many choco flakes are in the bedroom")
-    #SpeechTextToBehavior(text="How many choco flakes are in the kitchen")
-    #SpeechTextToBehavior(text="How many doors does the bedroom have")
-
-    # ---PredefinedQuestions---
-    #SpeechTextToBehavior("When was invented the B programming language")
-    #SpeechTextToBehavior("What day is today")
-    #SpeechTextToBehavior("What time is it")
-    #SpeechTextToBehavior(spr=True, text="What day is today")
+        # ---PredefinedQuestions---
+        #SpeechTextToBehavior("When was invented the B programming language")
+        #SpeechTextToBehavior("What day is today")
+        #SpeechTextToBehavior("What time is it")
+        #SpeechTextToBehavior(spr=True, text="What day is today")

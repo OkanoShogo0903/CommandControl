@@ -62,7 +62,6 @@ class Behavior():
             return False
         '''
 
-
 # --------------[BaseFuntion START]---------------------->
     def picoSpeaker(self, say_text):
         ''' pico speeck '''
@@ -197,7 +196,6 @@ class Behavior():
 
 
 # --------------[One's own callback function START]---------------------->
-
     def TalkTime(self):
         self.Talk('it is ' + datetime.datetime.now().strftime('%H %M')) # %H mean hour <str number> ,%M mean minute <str number>
         return True
