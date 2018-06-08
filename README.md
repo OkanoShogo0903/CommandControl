@@ -21,8 +21,8 @@ $ pip install xmltodict
 
 ## Xmlファイルについて
 - 新しくプログラムから参照されるxmlファイルを追加する場合は、XmlPerser.pyを触ればいいです
-- `size="10"`とかしてるのの単位はmmです
+- `size='10'`とかしてるのの単位はmmです
 
 ## 大会当日にすること
-[] SPRを行う部屋を`SPR_PLAY_ROOM`で設定しとく
+[] SPRを行う部屋を`SPR_PLAY_ROOM`で設定しとく.`vim CommandControl/Behavior.py`
 [] 各XMLファイルを記入する

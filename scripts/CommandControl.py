@@ -2,7 +2,7 @@
 # reference : https://github.com/kyordhel/GPSRCmdGen
 
 # [ParameterStart]----------------------->
-IS_ROS_ACTIVE = False
+IS_ROS_ACTIVE = True 
 # [ParameterEnd]------------------------
 
 import re
@@ -141,10 +141,12 @@ if IS_ROS_ACTIVE:
     speech_sub = rospy.Subscriber('/riddle_req',String,riddleCB)
 # ----<
 
+if IS_ROS_ACTIVE:
+    rospy.init_node('command_control')
+    rospy.spin()
+
 if __name__ == '__main__':
-    if IS_ROS_ACTIVE:
-        rospy.init_node('command_control')
-        rospy.spin()
+    pass
 
     # <---testcode--->
     # ---common err---
@@ -154,10 +156,10 @@ if __name__ == '__main__':
     # ok
     #SpeechTextToBehavior(text="How many elders are in the crowd")
     #SpeechTextToBehavior(text="How many people in the crowd are waving")
-    SpeechTextToBehavior(text="Tell me the number of boys in the crowd")
-    SpeechTextToBehavior(text="Tell me if the person waving was a man")
-    SpeechTextToBehavior(text="Tell me if the person standing was a man")
-    SpeechTextToBehavior(text="Tell me how many people were wearing red")
+    #SpeechTextToBehavior(text="Tell me the number of boys in the crowd")
+    #SpeechTextToBehavior(text="Tell me if the person waving was a man")
+    #SpeechTextToBehavior(text="Tell me if the person standing was a man")
+    #SpeechTextToBehavior(text="Tell me how many people were wearing red")
     # pre fix
     #SpeechTextToBehavior(text="How many people in the crowd are standing or sitting")
     #SpeechTextToBehavior(text="Was the person sitting a man or woman") # woman -> man
@@ -181,6 +183,7 @@ if __name__ == '__main__':
     #SpeechTextToBehavior(text="How many fruits are there?")
 
     #SpeechTextToBehavior(text="What is the color of the apple")
+    #SpeechTextToBehavior(text="What is the color of the soap")
 
     #SpeechTextToBehavior(text="Do the apple and melon belong to the same category")
     #SpeechTextToBehavior(text="Do the apple and tuna fish belong to the same category")
