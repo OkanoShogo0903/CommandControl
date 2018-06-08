@@ -85,18 +85,6 @@ def removeHipSpace(captures):
     return mirror
 
 
-def TrimNumberPart(captures):
-    ''' {'name1':'apple'} ---> {'name':'apple'} '''
-    num_p = re.compile(r'[0-9]')
-    new_captures = {}
-    for k in captures.keys(): # get key list
-        # trim numbers
-        #non_num_k =
-        new_captures[num_p.sub('',k)] = captures[k]
-
-    return new_captures
-
-
 num_pattern = re.compile(r'[0-9]')
 def isSimilarRegexpBlock(captures):
     ''' This function fix regex's miss match.
@@ -114,24 +102,21 @@ def isSimilarRegexpBlock(captures):
 
     '''
 
-    # TODO minaosi
     correct_count = 0
     for captured_key,captured_value in captures.items(): # dict.items() : return key,value
         # remove obviously strange things
-        # example : {'room':'None'},{'name','how'}
+        #   example : captures ---> {'room':'None'},{'name','how'}
+        captured_key = num_pattern.sub('',captured_key) # remove number
+        #print("[k]",captured_key)
+        #print("[v]",captured_value)
         for i in xml_data.origins_sum_list:
-            captured_key = num_pattern.sub('',captured_key)
-                
-            if captured_key in i: # mean location
+            try:
                 if i[captured_key] == captured_value:
-                    print(captured_value)
+                    #print(captured_value)
                     correct_count += 1
                     break
-                    #return True
-
-        # location
-    #else:
-        #return False
+            except KeyError:
+                pass
 
     print("---",correct_count)
     if correct_count == len(captures): # mean all hit
@@ -169,10 +154,10 @@ if __name__ == '__main__':
     # ok
     #SpeechTextToBehavior(text="How many elders are in the crowd")
     #SpeechTextToBehavior(text="How many people in the crowd are waving")
-    #SpeechTextToBehavior(text="Tell me the number of boys in the crowd")
-    #SpeechTextToBehavior(text="Tell me if the person waving was a man")
-    #SpeechTextToBehavior(text="Tell me if the person standing was a man")
-    #SpeechTextToBehavior(text="Tell me how many people were wearing red")
+    SpeechTextToBehavior(text="Tell me the number of boys in the crowd")
+    SpeechTextToBehavior(text="Tell me if the person waving was a man")
+    SpeechTextToBehavior(text="Tell me if the person standing was a man")
+    SpeechTextToBehavior(text="Tell me how many people were wearing red")
     # pre fix
     #SpeechTextToBehavior(text="How many people in the crowd are standing or sitting")
     #SpeechTextToBehavior(text="Was the person sitting a man or woman") # woman -> man
@@ -180,13 +165,13 @@ if __name__ == '__main__':
     # ---ObjectQuestions---
     # ok
     #SpeechTextToBehavior(text="How many tuna fish are there?") # false
-    #SpeechTextToBehavior(text="How many food are there?")
+    #SpeechTextToBehavior(text="How many snacks are there?")
 
     #SpeechTextToBehavior(text="How many tuna fish are in the kitchen")
     #SpeechTextToBehavior(text="How many snacks are in the desk")
     #SpeechTextToBehavior(text="How many snacks are in the kitchen")
 
-    #SpeechTextToBehavior(text="What names are stored in the kitchen")
+    #SpeechTextToBehavior(text="What names are stored in the bathroom cabinet")
 
     #SpeechTextToBehavior(text="Where can I find the apple")
     #SpeechTextToBehavior(text="Where can I find the pasta")
@@ -194,20 +179,24 @@ if __name__ == '__main__':
     #SpeechTextToBehavior(text="What is the category of the tuna fish") # food
 
     #SpeechTextToBehavior(text="How many fruits are there?")
-    # pre fix
+
     #SpeechTextToBehavior(text="What is the color of the apple")
+
     #SpeechTextToBehavior(text="Do the apple and melon belong to the same category")
     #SpeechTextToBehavior(text="Do the apple and tuna fish belong to the same category")
-    SpeechTextToBehavior(text="Which is the biggest fruits")
-    SpeechTextToBehavior(text="Between the apple and melon, which one is bigger")
+
+    #SpeechTextToBehavior(text="Which is the heaviest fruits")
+
+    #SpeechTextToBehavior(text="Between the melon and apple, which one is bigger")
+    #SpeechTextToBehavior(text="Between the apple and banana, which one is lighter")
 
     # ---ArenaQuestions---
     # ok
-    #SpeechTextToBehavior(text="Where is the foo locate") # false
-    #SpeechTextToBehavior(text="How many freezer are in the kitchen")
-    #SpeechTextToBehavior(text="In which room is the tuna fish")
     #SpeechTextToBehavior(text="Where is the M and M's locate")
     #SpeechTextToBehavior(text="In which room is the Robo O's")
+    #SpeechTextToBehavior(text="How many choco flakes are in the bedroom")
+    #SpeechTextToBehavior(text="How many choco flakes are in the kitchen")
+    #SpeechTextToBehavior(text="How many doors does the bedroom have")
 
     # ---PredefinedQuestions---
     #SpeechTextToBehavior("When was invented the B programming language")

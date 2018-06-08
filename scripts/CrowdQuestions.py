@@ -76,17 +76,18 @@ data = [\
         # call one's own function
         # $crowdq = Was the person $posprs a $gprsng?
         'pattern':[re.compile(r'Was the person (?P<posprs>.+) a (?P<gprsng>.+)', re.IGNORECASE)],\
-        'callback':behavior.UnimplementedCountReply,\
-        # $gprsng = male or female | man or woman | boy or girl
+        'callback':behavior.UnimplementedGprsngReply,\
         # $posprs = standing | sitting | lying down
+        # $gprsng = male or female | man or woman | boy or girl
     },\
     {\
         # ???
         # $crowdq = Tell me if the person ($posprs | {gesture}) was a $gprsn?
-        'pattern':[re.compile(r'Tell me if the person (?P<posprs>.+)was a (?P<gprsn>.+)', re.IGNORECASE),\
-                re.compile(r'Tell me if the person (?P<gesture>.+)was a (?P<gprsn>.+)', re.IGNORECASE)],\
-        'callback':behavior.UnimplementedCountReply,\
+        'pattern':[re.compile(r'Tell me if the person (?P<posprs>.+) was a (?P<gprsn>.+)', re.IGNORECASE),\
+                re.compile(r'Tell me if the person (?P<gesture>.+) was a (?P<gprsn>.+)', re.IGNORECASE)],\
+        'callback':behavior.UnimplementedGprsnReply,\
         # $posprs = standing | sitting | lying down
+        # $gprsn  = male | female | man | woman | boy | girl
     },\
     {\
         # ???

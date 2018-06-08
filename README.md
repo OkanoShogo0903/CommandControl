@@ -16,3 +16,13 @@ $ pip install xmltodict
   <object name="shampoo"       difficulty="moderate"                               />
 </category>
 ~~~
+- めっちゃファイル分割しとる
+- xmlファイルがetcファイルとかにまとまってない ---> windowsとlinuxではpathの関係で分割すると面倒になるのでこうしてる雑魚
+
+## Xmlファイルについて
+- 新しくプログラムから参照されるxmlファイルを追加する場合は、XmlPerser.pyを触ればいいです
+- `size="10"`とかしてるのの単位はmmです
+
+## 大会当日にすること
+[] SPRを行う部屋を`SPR_PLAY_ROOM`で設定しとく
+[] 各XMLファイルを記入する

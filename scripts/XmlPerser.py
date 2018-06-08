@@ -8,6 +8,7 @@ import xml.etree.ElementTree as ET
 #    'scripts/CommonFiles/Names.xml',\
 #    'scripts/CommonFiles/Objects.xml'
 #]
+room_list = []
 location_list = []
 object_list = []
 name_list = []
@@ -47,7 +48,7 @@ def setReferredGlobalValue():
     global origins_sum_list
     origins_sum_list = \
             location_list + object_list + name_list + \
-            gestures_list + color_list + crowd_state_list + comparison_list
+            gestures_list + color_list + crowd_state_list + comparison_list + room_list
 
 
 def getXmldata():
@@ -55,6 +56,10 @@ def getXmldata():
     with open(add_path + 'Locations.xml', 'r') as xml_file:
         root = ET.fromstring(xml_file.read())
         for child in root: # reference to child node
+            c = {}
+            c.update(child.attrib)
+            room_list.append(c)
+            #room_list.append(child.attrib)
             for grandson in child:
                 _dict = {}
                 _dict['room'] = child.attrib['name']
@@ -110,6 +115,7 @@ def init():
     # get xml data from CommonFiles
     getXmldata()
 
+    #print("[room list]",room_list)
     #print("[locate list]",location_list)
     #print("[object list]",object_list)
     #print("[name list]",name_list)

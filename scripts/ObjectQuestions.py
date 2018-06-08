@@ -45,14 +45,14 @@ import XmlPerser as xml_data
 behavior = Behavior.Behavior()
 data = [\
     {\
+        #[warning] SPRの部屋にあるカテゴリーをすべて読み上げるようにしている
         #$objq = How many {category} are there?
         'pattern':[re.compile(r'How many (?P<category>.+) are there', re.IGNORECASE)],\
         'pattern_variable':{'beacon':'defaultLocation'},\
         'text':'it in $defaultLocation',\
-        'callback':behavior.HowManyObjAreThere,\
+        'callback':behavior.howManyCategoryAreThere,\
     },\
     {\
-        # TODO color
         #$objq = What's the color of the {kname}?
         'pattern':[re.compile(r"(?:What's)|(?:What is) the color of the (?P<name>.+)", re.IGNORECASE)],\
         'pattern_variable':{'name':'color'},\
@@ -60,27 +60,23 @@ data = [\
         'callback':behavior.customTalk,\
     },\
     {\
-        # TODO some tag
-        # TODO regexfix
         #$objq = How many ({category} | names) are in the {placement}?
         'pattern':[\
-            re.compile(r'How many (?P<category>.+) are in the (?P<room>.+)', re.IGNORECASE),\
-            re.compile(r'How many (?P<category>.+)are in the (?P<name>.+)', re.IGNORECASE),\
+            re.compile(r'How many (?P<category>.+) are in the (?P<name>.+)', re.IGNORECASE),\
+            re.compile(r'How many (?P<name1>.+) are in the (?P<name2>.+)', re.IGNORECASE),\
             ],\
             #re.compile(r'How many (?P<name>(?:\w+ ){1,256})are in the (?P<room>(?:\w+(?: |$)){1,256})', re.IGNORECASE)] # same to $arenaq = How many ({name} | {name}) are in the {room}?
         'text':'',\
-        'callback':behavior.HowManyObjAreThere,\
+        'callback':behavior.howManyObjInThePlacement,\
     },\
     {\
-        # TODO nante kotaerunoga iinoka wakaran 
         #$objq = What names are stored in the {placement}?
         'pattern':[\
-                re.compile(r'What names are stored in the (?P<room>.+)', re.IGNORECASE),\
-                re.compile(r'What names are stored in the (?P<name>.+)', re.IGNORECASE),\
+                re.compile(r'What names are stored in the (?P<name>.+)', re.IGNORECASE)\
             ],\
         'pattern_variable':{'room':'name'},\
         'text':'it in $name',\
-        'callback':behavior.customTalk,\
+        'callback':behavior.whatNames,\
     },\
     {\
         #$objq = Where can I find the ({name} | {category})?
@@ -111,22 +107,20 @@ data = [\
         # call one's own function (Yes No question)
         #$objq = Which is the $adja ({category} | name)?
         #$adja = heaviest | smallest | biggest | lightest
-        #'pattern':re.compile(r'Which is the (?:heaviest)|(?:smallest)|(?:biggest)|(?:lightest) (?P<category>\w+)|(?P<name>\w+)', re.IGNORECASE),\
         'pattern':[re.compile(r'Which is the (?P<adja>\w+) (?P<category>.+)', re.IGNORECASE),\
                     re.compile(r'Which is the (?P<adja>\w+) (?P<name>.+)', re.IGNORECASE)],\
-        #'pattern_variable':{'beacon':'defaultLocation'},\
         'callback':behavior.whichIsTheCompare,\
         #'callback':behavior.TwoObjectComparison,\
     },\
     {\
-        # TODO need input voice data test , for ","
         # call one's own function (Yes No question)
         #$objq = Between the {name 1} and {name 2}, which one is $adjr?
         #$adjr = heavier | smaller | bigger | lighter
-        # TODO name1.2 will block by isSimilarRegexpBlock
-        'pattern':[re.compile(r'Between the (?P<name1>.+) and (?P<name2>.+) which one is (?P<adjr>\w+)', re.IGNORECASE)],\
+        # I give priority to speed. ;)
+        'pattern':[\
+                re.compile(r'Between the (?P<name1>.+) and (?P<name2>.+), which one is (?P<adjr>\w+)', re.IGNORECASE),\
+                re.compile(r'Between the (?P<name1>.+) and (?P<name2>.+) which one is (?P<adjr>\w+)', re.IGNORECASE)],\
         #'pattern_variable':{'beacon':'defaultLocation'},\
-        #'callback':behavior.twoObjectComparison,\
-        'callback':behavior.,\
+        'callback':behavior.twoObjectComparison,\
     },\
 ]

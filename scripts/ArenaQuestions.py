@@ -41,16 +41,17 @@ data = [\
         'callback':behavior.customTalk,\
     },\
     {\
+        # TODO add door number
         # $arenaq = How many doors does the {room} have?
-        'pattern':[re.compile(r'How many doors does the (?P<name>.+) have', re.IGNORECASE)],\
+        'pattern':[re.compile(r'How many doors does the (?P<room>.+) have', re.IGNORECASE)],\
         #'pattern_variable':{'name':'room'},\
         'text':'it have $random',\
-        'callback':behavior.HowManyObjInTheRoom,\
+        'callback':behavior.howManyDoors,\
     },\
     {\
         # $arenaq = How many ({name} | {name}) are in the {room}?
         'pattern':[re.compile(r'How many (?P<name>.+) are in the (?P<room>.+)', re.IGNORECASE)],\
         'text':'',\
-        'callback':behavior.HowManyObjInTheRoom,\
+        'callback':behavior.howManyObjInTheRoom,\
     },\
 ]
