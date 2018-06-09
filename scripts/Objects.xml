@@ -18,7 +18,7 @@
     <object name="melon"         difficulty="high"     type="alike"   fruit="true"   weight="400" size="800" color="red" num="1" />
     <object name="banana"        difficulty="moderate" type="alike"   fruit="true"   weight="300" size="500" color="red" num="1" />
     <object name="pear"          difficulty="moderate" type="alike"   fruit="true"   weight="200" size="200" color="red" num="1" />
-    <object name="peach"         difficulty="moderate" type="alike"   fruit="true"   weight="100" size="300" color="red" num="1" />
+    <object name="peach"         difficulty="moderate" type="alike"   fruit="true"   weight="100" size="30" color="red" num="1" />
   </category>
   <category name="food" defaultLocation="cabinet" room="kitchen">
     <object name="pasta"         difficulty="easy"                                   weight="150" size="500" color="red" num="1" />
@@ -51,7 +51,7 @@
     <object name="small dish"    difficulty="moderate" type="known"   canPlaceOn="true"                weight="150" size="500" color="red" num="1" />
     <object name="bowl"          difficulty="high"                    canPourIn="true"                 weight="150" size="500" color="red" num="1" />
     <object name="glass"         difficulty="moderate"                canPourIn="true"                 weight="150" size="500" color="red" num="1" />
-    <object name="mug"           difficulty="high"                    canPourIn="true"                 weight="150" size="500" color="red" num="1" />
+    <object name="mug"           difficulty="high"                    canPourIn="true"                 weight="150" size="30" color="red" num="1" />
   </category>
   <category name="containers" defaultLocation="counter" room="kitchen">
     <object name="tray"          difficulty="high"     type="special" canPlaceOn="true" twoHands="true" weight="150" size="500" color="red" num="1" />

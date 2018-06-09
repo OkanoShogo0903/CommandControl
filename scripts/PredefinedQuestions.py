@@ -7,7 +7,8 @@ import Behavior
 behavior = Behavior.Behavior()
 data = [\
     {\
-        'pattern':[re.compile(r"(What's)|(What is) the name of your team", re.IGNORECASE)],\
+    # (?:What's)|(?:What is) 
+    'pattern':[re.compile(r"the name of your team", re.IGNORECASE)],\
         'text':'My team name is K I T happy robot',\
         'callback':behavior.Talk,\
     },\

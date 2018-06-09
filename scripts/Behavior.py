@@ -124,17 +124,18 @@ class Behavior():
         elif comparison == 'lightest' or comparison == 'lighter':
             c_key = 'weight'
             c_unit = 'minus'
-        #print(c_key)
-        #print(c_unit)
+        print(c_key)
+        print(c_unit)
 
         # compare
-        target_list = sorted(target_list, key=lambda i:i[c_key]) # sort in ascending order. (1,2,3,...)
+        sorted_list = sorted(target_list, key=lambda i:i[c_key]) # sort in ascending order. (1,2,3,...)
         if c_unit == 'plus':
-            result_dict = target_list[-1]
+            result_dict = sorted_list[-1]
         elif c_unit == 'minus':
-            result_dict = target_list[0]
+            result_dict = sorted_list[0]
 
         # output
+        print(sorted_list)
         #print(result_dict)
         return result_dict
 
@@ -350,11 +351,10 @@ class Behavior():
         '''
         ObjectQuestion
         [PATTERN]
-            $objq = Which is the $adja ({category} | name)?
+            $objq = Which is the $adja {category}?
             $adja = heaviest | smallest | biggest | lightest
         [args exp]
             print("args",args) # ---> {'adja': 'biggest', 'category': 'fruits'}
-            print("args",args) # ---> {'adja': 'biggest', 'name': 'apple'}
         [SPECIFICATION]
             say correct obj name
         '''
@@ -368,13 +368,31 @@ class Behavior():
                 if i_dict['category'] == args['category']:
                     targets.append(i_dict)
 
-        elif 'name' in args.keys():
-            # owari ;)
-            self.Talk(text="I dont know")
-            return True
         else:
             self.Talk(text="I dont know")
             return True # have no false
+
+        result_dict = self.getComparedResultDict(comparison, targets)
+
+        # output
+        self.Talk(text=result_dict['name'])
+        return True
+
+
+    def whichIsTheMost(self, **args):
+        '''
+        ObjectPattern
+        [PATTERN]
+            $objq = Which is the $adja object?
+            $adja = heaviest | smallest | biggest | lightest
+        [args exp]
+            print("args",args) # ---> {'adja': 'biggest'}
+        [SPECIFICATION]
+            say correct obj name
+        '''
+        #targets = [] # dictation list
+        comparison = args['adja']
+        targets = xml_data.object_list 
 
         result_dict = self.getComparedResultDict(comparison, targets)
 

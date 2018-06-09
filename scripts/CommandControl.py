@@ -81,6 +81,8 @@ def removeHipSpace(captures):
     '''
     mirror = captures
     for k,v in captures.items(): # dict.items() : return key,value
+        #if v == None:
+        #    return captures
         if v[-1] == " ":
             mirror[k] = v[:-1]
     return mirror
