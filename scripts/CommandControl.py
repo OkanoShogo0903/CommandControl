@@ -2,23 +2,26 @@
 # reference : https://github.com/kyordhel/GPSRCmdGen
 
 # [ParameterStart]----------------------->
-IS_ROS_ACTIVE = True 
+IS_ROS_ACTIVE = True
+match_rate_threshold = 0.7
 # [ParameterEnd]------------------------
 
 import re
 import datetime
-import Behavior
+import difflib
 
+import Behavior
+import XmlPerser as xml_data
 import PredefinedQuestions
 import ArenaQuestions
 import ObjectQuestions
 import CrowdQuestions
-import XmlPerser as xml_data
 # For ros ----------->
 if IS_ROS_ACTIVE is True:
     import rospy
     from std_msgs.msg import String,Bool
-''' ROSに音声認識の結果を投げるWORDスレッドを管理するクラス '''
+
+mutex = True
 # SPR --------------->
 predefined_questions = PredefinedQuestions.data
 arena_questions = ArenaQuestions.data
@@ -50,6 +53,8 @@ def SpeechTextToBehavior(text, spr = True, gpsr = False):
 
                 print("captures     :",captures)
                 #print("p['pattern'] :",p) # capture
+                captures = convertMostSimilarWord(captures)
+                print("captures     :",captures)
 
                 if isSimilarRegexpBlock(captures):
                     if 'text' in q_data: # or text element is existting
@@ -64,8 +69,10 @@ def SpeechTextToBehavior(text, spr = True, gpsr = False):
                         else:
                             pass
     else:
-        print('A : Please talk again')
-        Behavior.Behavior().picoSpeaker('Please talk again')
+        #print('A : Please talk again')
+        #Behavior.Behavior().picoSpeaker('Please talk again')
+        print('A : Sorry. I do not know')
+        Behavior.Behavior().picoSpeaker('Sorry. I do not know')
         return False
 
 
@@ -82,6 +89,22 @@ def removeHipSpace(captures):
     for k,v in captures.items(): # dict.items() : return key,value
         if v[-1] == " ":
             mirror[k] = v[:-1]
+    return mirror
+
+def convertMostSimilarWord(captures):
+    mirror = captures
+    for k,v in captures.items(): # dict.items() : return key,value
+        highest_rate = -1
+        for i in xml_data.origins_sum_list:
+            try:
+                ratio = difflib.SequenceMatcher(None, i[k], v).ratio()
+                if ratio > highest_rate:
+                    #print(ratio, i[k], k)
+                    mirror[k] = i[k] # The highest ratio is updated to the last.
+                    #print(i[k])
+                    highest_rate = ratio
+            except KeyError:
+                pass
     return mirror
 
 
@@ -107,8 +130,6 @@ def isSimilarRegexpBlock(captures):
         # remove obviously strange things
         #   example : captures ---> {'room':'None'},{'name','how'}
         captured_key = num_pattern.sub('',captured_key) # remove number
-        #print("[k]",captured_key)
-        #print("[v]",captured_value)
         for i in xml_data.origins_sum_list:
             try:
                 if i[captured_key] == captured_value:
@@ -124,24 +145,34 @@ def isSimilarRegexpBlock(captures):
     else:
         return False
 
+
 # ros interface ---->
-if IS_ROS_ACTIVE:
-    answer_pub = rospy.Publisher('/riddle_res',Bool,queue_size=1)
-
-
 def riddleCB(msg):
     ''' SPR riddle game callback func '''
-    print(msg.data)
-    answer = Bool()
-    answer.data = SpeechTextToBehavior(msg.data, spr = True)
-    answer_pub.publish(answer)
+    global mutex
+    if mutex == True:
+        mutex = False
+        # Process start --->
+        answer = Bool()
+        Behavior.Behavior().picoSpeaker('Your question is ' + msg.data)
+        rospy.sleep(2) # sec
+        answer.data = SpeechTextToBehavior(msg.data, spr = True)
+        rospy.sleep(5) # sec
+        print "publish : " + str(answer.data)
+        answer_pub.publish(answer)
+        # Process end <---
+        mutex = True
 
 
 if IS_ROS_ACTIVE:
-    speech_sub = rospy.Subscriber('/riddle_req',String,riddleCB)
+    answer_pub = rospy.Publisher('/riddle_res/is_action_state',Bool,queue_size=1)
+    speech_sub = rospy.Subscriber('/riddle_req/question',String,riddleCB)
+
 # ----<
 
+# main --->
 if IS_ROS_ACTIVE:
+    print('--- Command Control Standby ---')
     rospy.init_node('command_control')
     rospy.spin()
 
@@ -182,7 +213,7 @@ if __name__ == '__main__':
 
     #SpeechTextToBehavior(text="How many fruits are there?")
 
-    #SpeechTextToBehavior(text="What is the color of the apple")
+    #SpeechTextToBehavior(text="What is the color of the Apple")
     #SpeechTextToBehavior(text="What is the color of the soap")
 
     #SpeechTextToBehavior(text="Do the apple and melon belong to the same category")
