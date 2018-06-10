@@ -62,7 +62,6 @@ class Behavior():
             return False
         '''
 
-
 # --------------[BaseFuntion START]---------------------->
     def picoSpeaker(self, say_text):
         ''' pico speeck '''
@@ -129,13 +128,14 @@ class Behavior():
         #print(c_unit)
 
         # compare
-        target_list = sorted(target_list, key=lambda i:i[c_key]) # sort in ascending order. (1,2,3,...)
+        sorted_list = sorted(target_list, key=lambda i:i[c_key]) # sort in ascending order. (1,2,3,...)
         if c_unit == 'plus':
-            result_dict = target_list[-1]
+            result_dict = sorted_list[-1]
         elif c_unit == 'minus':
-            result_dict = target_list[0]
+            result_dict = sorted_list[0]
 
         # output
+        #print(sorted_list)
         #print(result_dict)
         return result_dict
 
@@ -197,7 +197,6 @@ class Behavior():
 
 
 # --------------[One's own callback function START]---------------------->
-
     def TalkTime(self):
         self.Talk('it is ' + datetime.datetime.now().strftime('%H %M')) # %H mean hour <str number> ,%M mean minute <str number>
         return True
@@ -218,7 +217,7 @@ class Behavior():
         d = self.getDict(args['room'],xml_data.room_list)
         door_num = d['door']
         # output
-        self.Talk(text=str(door_num)) # randint(a, b) -> a <= n <= b
+        self.Talk(text='It have ' + str(door_num) + ' door') # randint(a, b) -> a <= n <= b
         return True
 
 
@@ -242,9 +241,9 @@ class Behavior():
 
         # output
         if ans == None:
-            self.Talk(text='0')
+            self.Talk(text='no '+name+' in the '+room)
         else:
-            self.Talk(text=str(ans['num'])) # randint(a, b) -> a <= n <= b
+            self.Talk(text=str(ans['num'])+' '+name+' in the '+room)
         return True
 
 
@@ -298,7 +297,7 @@ class Behavior():
 
         # output
         import random
-        self.Talk(text=str(random.randint(1, 2))) # randint(a, b) -> a <= n <= b
+        self.Talk(text='There are '+str(random.randint(1, 2))) # randint(a, b) -> a <= n <= b
         return True
 
 
@@ -320,10 +319,10 @@ class Behavior():
                 answers.append(i_dict['name'])
         # output
         if len(answers) == 0:
-            string = ("I dont know")
+            self.Talk(text="I dont know")
         else:
             string = ' '.join(answers) # joint each name
-        self.Talk(text=string)
+            self.Talk(text='Stored objects are '+string)
         return True
 
 
@@ -342,9 +341,9 @@ class Behavior():
         dict_b = self.getDict(args['name2'], xml_data.object_list)
         # process and output
         if dict_a['category'] == dict_b['category']:
-            self.Talk(text='same category')
+            self.Talk(text='Yes. same category')
         else:
-            self.Talk(text='different category')
+            self.Talk(text='No. different category')
         return True
 
 
@@ -352,11 +351,10 @@ class Behavior():
         '''
         ObjectQuestion
         [PATTERN]
-            $objq = Which is the $adja ({category} | name)?
+            $objq = Which is the $adja {category}?
             $adja = heaviest | smallest | biggest | lightest
         [args exp]
             print("args",args) # ---> {'adja': 'biggest', 'category': 'fruits'}
-            print("args",args) # ---> {'adja': 'biggest', 'name': 'apple'}
         [SPECIFICATION]
             say correct obj name
         '''
@@ -370,10 +368,6 @@ class Behavior():
                 if i_dict['category'] == args['category']:
                     targets.append(i_dict)
 
-        elif 'name' in args.keys():
-            # owari ;)
-            self.Talk(text="I dont know")
-            return True
         else:
             self.Talk(text="I dont know")
             return True # have no false
@@ -381,7 +375,29 @@ class Behavior():
         result_dict = self.getComparedResultDict(comparison, targets)
 
         # output
-        self.Talk(text=result_dict['name'])
+        self.Talk(text=result_dict['name']+' is '+comparison)
+        return True
+
+
+    def whichIsTheMost(self, **args):
+        '''
+        ObjectPattern
+        [PATTERN]
+            $objq = Which is the $adja object?
+            $adja = heaviest | smallest | biggest | lightest
+        [args exp]
+            print("args",args) # ---> {'adja': 'biggest'}
+        [SPECIFICATION]
+            say correct obj name
+        '''
+        #targets = [] # dictation list
+        comparison = args['adja']
+        targets = xml_data.object_list 
+
+        result_dict = self.getComparedResultDict(comparison, targets)
+
+        # output
+        self.Talk(text=result_dict['name']+' is '+comparison)
         return True
 
 
@@ -410,7 +426,7 @@ class Behavior():
             result_dict = self.getComparedResultDict(args['adjr'],[obj_a,obj_b])
 
             # output
-            self.Talk(text=result_dict['name'])
+            self.Talk(text=result_dict['name']+' is '+args['adjr'])
             return True
 
             '''

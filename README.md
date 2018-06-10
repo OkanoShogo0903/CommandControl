@@ -24,5 +24,6 @@ $ pip install xmltodict
 - `size='10'`とかしてるのの単位はmmです
 
 ## 大会当日にすること
-[] SPRを行う部屋を`SPR_PLAY_ROOM`で設定しとく.`vim CommandControl/Behavior.py`  
-[] 各XMLファイルを記入する  
+[ ] SPRを行う部屋を`SPR_PLAY_ROOM`で設定しとく.`vim CommandControl/Behavior.py`
+[ ] 部屋のドアの数を記入する
+[ ] 各XMLファイルを記入する

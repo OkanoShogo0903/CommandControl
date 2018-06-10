@@ -27,17 +27,22 @@ data = [\
     {\
         # $arenaq = Where is the {name} located?
         #'pattern':re.compile(r'Where is the %s locate'% xml_data.name_pattern, re.IGNORECASE),\
-        'pattern':[re.compile(r'Where is the (?P<name>.+) locate', re.IGNORECASE)],\
+        'pattern':[\
+            re.compile(r'the (?P<name>.+) locate', re.IGNORECASE),\
+        ],\
         'pattern_variable':{'name':'room'},\
-        'text':'it in $room',\
+        'text':'it is in $room',\
         'callback':behavior.customTalk,\
     },\
     {\
         # $arenaq = In which room is the {name}?
         #'pattern':re.compile(r'In which room is the %s'% xml_data.name_pattern, re.IGNORECASE),\
-        'pattern':[re.compile(r'In which room is the (?P<name>.+)', re.IGNORECASE)],\
+        'pattern':[\
+            re.compile(r'In which room is the (?P<name>.+)', re.IGNORECASE),\
+            re.compile(r'In which room is the (?P<name>\w+)', re.IGNORECASE),\
+        ],\
         'pattern_variable':{'name':'room'},\
-        'text':'it in $room',\
+        'text':'it is in $room',\
         'callback':behavior.customTalk,\
     },\
     {\
@@ -45,7 +50,7 @@ data = [\
         # $arenaq = How many doors does the {room} have?
         'pattern':[re.compile(r'How many doors does the (?P<room>.+) have', re.IGNORECASE)],\
         #'pattern_variable':{'name':'room'},\
-        'text':'it have $random',\
+        'text':'',\
         'callback':behavior.howManyDoors,\
     },\
     {\

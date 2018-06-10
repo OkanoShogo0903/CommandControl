@@ -7,96 +7,144 @@ import Behavior
 behavior = Behavior.Behavior()
 data = [\
     {\
-        'pattern':[re.compile(r'what are the colours of the Japanese flag', re.IGNORECASE)],\
-        'text':'Japanese flag is a red circle centred over white',\
+        # (?:What's)|(?:What is) the name of your team
+        'pattern':[\
+            re.compile(r"the name of your team", re.IGNORECASE),\
+            re.compile(r"team", re.IGNORECASE),\
+        ],\
+        'text':'My team name is K I T happy robot',\
         'callback':behavior.Talk,\
     },\
     {\
-        'pattern':[re.compile(r'when was invented the B programming language', re.IGNORECASE)],\
-        'text':'B was developed circa 1969 at Bell Labs',\
-        'callback':behavior.Talk,\
+        # What time is it
+        'pattern':[\
+            re.compile(r'time is it', re.IGNORECASE),\
+            re.compile(r'What time', re.IGNORECASE),\
+        ],\
+        'callback':behavior.TalkTime,\
     },\
     {\
-        'pattern':[re.compile(r'What city is the capital of the Japan', re.IGNORECASE)],\
-        'text':'Tokyo',\
-        'callback':behavior.Talk,\
-    },
-    {\
-        'pattern':[re.compile(r'When was invented the C programming language', re.IGNORECASE)],\
-        'text':'C was developed after B in 1972 at Bell Labs',\
-        'callback':behavior.Talk,\
+        # What day is today
+        'pattern':[\
+            re.compile(r'What day', re.IGNORECASE),
+            re.compile(r'today', re.IGNORECASE),
+        ],\
+        'callback':behavior.TalkToday,\
     },\
+#--------------------------------------------------->
     {\
-        'pattern':[re.compile(r'Which robot is used in the Open Platform League', re.IGNORECASE)],\
-        'text':'There is no standard defined for OPL',\
-        'callback':behavior.Talk,\
-    },\
-    {\
-        'pattern':[re.compile(r"What's the name of your team", re.IGNORECASE)],\
-        'text':'Team name is KIT Happy Robot',\
-        'callback':behavior.Talk,\
-    },\
-    {\
-        'pattern':[re.compile(r'Who invented the C programming language', re.IGNORECASE)],\
+        # Who invented the C programming language
+        'pattern':[\
+            re.compile(r'Who invented the C', re.IGNORECASE),\
+            re.compile(r'invented the C ', re.IGNORECASE),\
+        ],\
         'text':'Ken Thompson and Dennis Ritchie',\
         'callback':behavior.Talk,\
     },\
     {\
-        'pattern':[re.compile(r'Do you have dreams', re.IGNORECASE)],\
-        'text':'I dream of Electric Sheep',\
+        # When was the C programming language invented
+        'pattern':[\
+            re.compile(r'When was the C', re.IGNORECASE),\
+            re.compile(r'C programming language invented', re.IGNORECASE),\
+        ],\
+        'text':'C was developed after B in 1972 at Bell Labs',\
         'callback':behavior.Talk,\
     },\
     {\
-        'pattern':[re.compile(r'Which robot is used in the Domestic Standard Platform League', re.IGNORECASE)],\
-        'text':'The Toyota Human Support Robot',\
+        # When was the B programming language invented
+        'pattern':[\
+            re.compile(r'When was the B', re.IGNORECASE),\
+            re.compile(r'B programming', re.IGNORECASE),\
+        ],\
+        'text':'B was developed circa 1969 at Bell Labs',\
         'callback':behavior.Talk,\
     },\
     {\
-        'pattern':[re.compile(r'How many people live in the Japan', re.IGNORECASE)],\
-        'text':'A little over 80 million',\
-        'callback':behavior.Talk,\
-    },\
-    {\
-        'pattern':[re.compile(r'What is a Sakura', re.IGNORECASE)],\
-        'text':'Sakura is the Japanese term for ornamental cherry blossom and its tree',\
-        'callback':behavior.Talk,\
-    },\
-    {\
-        'pattern':[re.compile(r'Which robot is used in the Social Standard Platform League', re.IGNORECASE)],\
-        'text':'The SoftBank Robotics Pepper',\
-        'callback':behavior.Talk,\
-    },\
-    {\
-        'pattern':[re.compile(r'Who is the emperor of Japan', re.IGNORECASE)],\
-        'text':'His Majesty Akihito sama is the emperor in Japan since January 7, 1989',\
-        'callback':behavior.Talk,\
-    },\
-    {\
-        'pattern':[re.compile(r'What is the highest point in Japan', re.IGNORECASE)],\
-        'text':'The highest point in Japan is Mount Fuji, which reaches 3776m above sea level',\
-        'callback':behavior.Talk,\
-    },\
-    {\
-        'pattern':[re.compile(r'Where does the term computer bug come from', re.IGNORECASE)],\
+        # Where does the term computer bug come from
+        'pattern':[\
+            re.compile(r'Where does the term', re.IGNORECASE),\
+            re.compile(r'computer bug come from', re.IGNORECASE),\
+        ],\
         'text':'From a moth trapped in a relay',\
         'callback':behavior.Talk,\
     },\
     {\
-        'pattern':[re.compile(r"In which city will next year's RoboCup be hosted", re.IGNORECASE)],\
-        'text':"It hasn't been announced yet",\
-        'callback':behavior.Talk,\
-    },\
-    {\
-        'pattern':[re.compile(r'Who invented the first compiler', re.IGNORECASE)],\
+        # Who invented the first compiler
+        'pattern':[\
+            re.compile(r'Who invented the first', re.IGNORECASE),\
+            re.compile(r'the first', re.IGNORECASE),\
+        ],\
         'text':'Grace Brewster Murray Hopper invented it',\
         'callback':behavior.Talk,\
     },\
     {\
-        'pattern':[re.compile(r'What time is it', re.IGNORECASE)],\
-        'callback':behavior.TalkTime,\
+        # Which robot is used in the Open Platform League
+        'pattern':[\
+            re.compile(r'Open', re.IGNORECASE),\
+        ],\
+        'text':'There is no standard defined for OPL',\
+        'callback':behavior.Talk,\
     },\
     {\
-        'pattern':[re.compile(r'What day is today', re.IGNORECASE)],\
-        'callback':behavior.TalkToday,\
+        # Which robot is used in the Domestic Standard Platform League
+        'pattern':[\
+            re.compile(r'Domestic', re.IGNORECASE),\
+        ],\
+        'text':'The Toyota Human Support Robot',\
+        'callback':behavior.Talk,\
+    },\
+    {\
+        # Which robot is used in the Social Standard Platform League
+        'pattern':[\
+            re.compile(r'Social', re.IGNORECASE),\
+            re.compile(r'Standard', re.IGNORECASE),\
+        ],\
+        'text':'The SoftBank Robotics Pepper',\
+        'callback':behavior.Talk,\
+    },\
+    {\
+        # Do you have dreams
+        'pattern':[\
+            re.compile(r'you have', re.IGNORECASE),\
+            re.compile(r'dream', re.IGNORECASE),\
+        ],\
+        'text':'I dream of Electric Sheep',\
+        'callback':behavior.Talk,\
+    },\
+    {\
+        # In which city will next year's RoboCup be hosted
+        'pattern':[\
+            re.compile(r"city", re.IGNORECASE),\
+            re.compile(r"next year", re.IGNORECASE),\
+            re.compile(r"RoboCup be host", re.IGNORECASE),\
+        ],\
+        'text':"It hasn't been announced yet",\
+        'callback':behavior.Talk,\
+    },\
+    {\
+        # What is the origin of the name Canada
+        'pattern':[\
+            re.compile(r'What is the origin', re.IGNORECASE),\
+            re.compile(r'name Canada', re.IGNORECASE),\
+        ],\
+        'text':'The name Canada comes from the Iroquois word Kanata, meaning village or settlement',\
+        'callback':behavior.Talk,\
+    },\
+    {\
+        # What is the capital of Canada
+        'pattern':[\
+            re.compile(r'capital', re.IGNORECASE),\
+        ],\
+        'text':'The capital of Canada is Ottawa',\
+        'callback':behavior.Talk,\
+    },\
+    {\
+        # What is the national anthem of Canada
+        'pattern':[\
+            re.compile(r'anthem of Canada', re.IGNORECASE),\
+            re.compile(r'national', re.IGNORECASE),\
+        ],\
+        'text':'O Canada',\
+        'callback':behavior.Talk,\
     },\
 ]
