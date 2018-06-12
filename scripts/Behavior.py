@@ -124,8 +124,8 @@ class Behavior():
         elif comparison == 'lightest' or comparison == 'lighter':
             c_key = 'weight'
             c_unit = 'minus'
-        print(c_key)
-        print(c_unit)
+        #print(c_key)
+        #print(c_unit)
 
         # compare
         sorted_list = sorted(target_list, key=lambda i:i[c_key]) # sort in ascending order. (1,2,3,...)
@@ -135,7 +135,7 @@ class Behavior():
             result_dict = sorted_list[0]
 
         # output
-        print(sorted_list)
+        #print(sorted_list)
         #print(result_dict)
         return result_dict
 
@@ -217,7 +217,7 @@ class Behavior():
         d = self.getDict(args['room'],xml_data.room_list)
         door_num = d['door']
         # output
-        self.Talk(text=str(door_num)) # randint(a, b) -> a <= n <= b
+        self.Talk(text='It have ' + str(door_num) + ' door') # randint(a, b) -> a <= n <= b
         return True
 
 
@@ -241,9 +241,9 @@ class Behavior():
 
         # output
         if ans == None:
-            self.Talk(text='0')
+            self.Talk(text='no '+name+' in the '+room)
         else:
-            self.Talk(text=str(ans['num'])) # randint(a, b) -> a <= n <= b
+            self.Talk(text=str(ans['num'])+' '+name+' in the '+room)
         return True
 
 
@@ -297,7 +297,7 @@ class Behavior():
 
         # output
         import random
-        self.Talk(text=str(random.randint(1, 2))) # randint(a, b) -> a <= n <= b
+        self.Talk(text='There are '+str(random.randint(1, 2))) # randint(a, b) -> a <= n <= b
         return True
 
 
@@ -319,10 +319,10 @@ class Behavior():
                 answers.append(i_dict['name'])
         # output
         if len(answers) == 0:
-            string = ("I dont know")
+            self.Talk(text="I dont know")
         else:
             string = ' '.join(answers) # joint each name
-        self.Talk(text=string)
+            self.Talk(text='Stored objects are '+string)
         return True
 
 
@@ -341,9 +341,9 @@ class Behavior():
         dict_b = self.getDict(args['name2'], xml_data.object_list)
         # process and output
         if dict_a['category'] == dict_b['category']:
-            self.Talk(text='same category')
+            self.Talk(text='Yes. same category')
         else:
-            self.Talk(text='different category')
+            self.Talk(text='No. different category')
         return True
 
 
@@ -375,7 +375,7 @@ class Behavior():
         result_dict = self.getComparedResultDict(comparison, targets)
 
         # output
-        self.Talk(text=result_dict['name'])
+        self.Talk(text=result_dict['name']+' is '+comparison)
         return True
 
 
@@ -397,7 +397,7 @@ class Behavior():
         result_dict = self.getComparedResultDict(comparison, targets)
 
         # output
-        self.Talk(text=result_dict['name'])
+        self.Talk(text=result_dict['name']+' is '+comparison)
         return True
 
 
@@ -426,7 +426,7 @@ class Behavior():
             result_dict = self.getComparedResultDict(args['adjr'],[obj_a,obj_b])
 
             # output
-            self.Talk(text=result_dict['name'])
+            self.Talk(text=result_dict['name']+' is '+args['adjr'])
             return True
 
             '''
