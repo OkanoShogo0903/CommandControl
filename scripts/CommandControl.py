@@ -2,7 +2,7 @@
 # reference : https://github.com/kyordhel/GPSRCmdGen
 
 # [ParameterStart]----------------------->
-IS_ROS_ACTIVE = True 
+IS_ROS_ACTIVE = True
 INTERVAL_TALK_END_TO_START = 5.0 # sec
 match_ratio_threshold = 0.7 # 0 ~ 1
 is_do_input_test = False
@@ -19,6 +19,8 @@ import PredefinedQuestions
 import ArenaQuestions
 import ObjectQuestions
 import CrowdQuestions
+
+#import mute
 # For ros ----------->
 if IS_ROS_ACTIVE is True:
     import rospy
@@ -181,14 +183,25 @@ def riddleWordCB(msg):
     global mutex
     #global last_time_stamp
     print("riddleCB")
+    if 'play' in msg.data:
+        import youtube
+        if 'oil' in msg.data:
+            youtube.aimer()
+        else:
+            youtube.kiminonaha()
+        answer_pub.publish(True)
+        return
     word = msg.data
     word.count(' ')
     if word.count(' ') >= 2: # Block short sentence. Maybe,short sentence is noize.
         if mutex == True:
             mutex = False
+            #mute.mute()
+
             # Process start --->
             #if voice_dict['time_stamp'] > last_time_stamp + datetime.timedelta(seconds=INTERVAL_TALK_END_TO_START):
             #last_time_stamp = datetime.datetime.now()
+            
             answer = Bool()
             Behavior.Behavior().picoSpeaker('Your question is ' + word)
             rospy.sleep(2) # sec
@@ -197,13 +210,15 @@ def riddleWordCB(msg):
             print "publish : " + str(answer.data)
             answer_pub.publish(answer)
             # Process end <---
+
             mutex = True
+            #mute.unmute()
         else:
             print ('mutex blocking!!')
 
 
 if IS_ROS_ACTIVE:
-    answer_pub = rospy.Publisher('/riddle_res/is_action_state',Bool,queue_size=1)
+    answer_pub = rospy.Publisher('/riddle_res/is_action_result',Bool,queue_size=1)
     speech_sub = rospy.Subscriber('/riddle_req/question_word',String,riddleWordCB)
     #speech_sub = rospy.Subscriber('/riddle_req/question_dict',String,riddleDictCB)
 
@@ -255,7 +270,7 @@ if __name__ == '__main__':
 
         #SpeechTextToBehavior(text="Where can I find the apple")
         #SpeechTextToBehavior(text="Where can I find the pasta")
-        SpeechTextToBehavior(text="Where can I find the toiletries")
+        #SpeechTextToBehavior(text="Where can I find the toiletries")
         #SpeechTextToBehavior(text="What is the category of the tuna fish") # food
 
         #SpeechTextToBehavior(text="How many fruits are there?")
