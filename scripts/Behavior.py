@@ -5,6 +5,7 @@ import datetime
 import types
 import re
 import XmlPerser as xml_data
+import google_tts
 #import CommandControl as cc
 
 # [ParameterStart]----------------------->
@@ -21,7 +22,8 @@ class Behavior():
 
     def Talk(self, text):
         print("A :", text)
-        self.picoSpeaker(text)
+        #self.picoSpeaker(text)
+        google_tts.say(text)
         return True
 
 
@@ -319,7 +321,7 @@ class Behavior():
                 answers.append(i_dict['name'])
         # output
         if len(answers) == 0:
-            self.Talk(text="I dont know")
+            self.Talk(text="I don't know")
         else:
             string = ' '.join(answers) # joint each name
             self.Talk(text='Stored objects are '+string)
@@ -369,7 +371,7 @@ class Behavior():
                     targets.append(i_dict)
 
         else:
-            self.Talk(text="I dont know")
+            self.Talk(text="I don't know")
             return True # have no false
 
         result_dict = self.getComparedResultDict(comparison, targets)

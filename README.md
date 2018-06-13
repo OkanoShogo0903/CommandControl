@@ -27,3 +27,7 @@ $ pip install xmltodict
 [ ] SPRを行う部屋を`SPR_PLAY_ROOM`で設定しとく.`vim CommandControl/Behavior.py`
 [ ] 部屋のドアの数を記入する
 [ ] 各XMLファイルを記入する
+
+## Install
+Google TTS  
+`google-cloud-texttospeech==0.1.0`

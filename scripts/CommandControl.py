@@ -20,6 +20,7 @@ import ArenaQuestions
 import ObjectQuestions
 import CrowdQuestions
 
+import google_tts
 #import mute
 # For ros ----------->
 if IS_ROS_ACTIVE is True:
@@ -83,8 +84,9 @@ def SpeechTextToBehavior(text, spr = True, gpsr = False):
 
     #print('A : Please talk again')
     #Behavior.Behavior().picoSpeaker('Please talk again')
-    print('A : Sorry. I dont know')
-    Behavior.Behavior().picoSpeaker('Sorry. I do not know')
+    print("A : Sorry. I don't know")
+    #Behavior.Behavior().picoSpeaker('Sorry. I do not know')
+    google_tts.say('Sorry. I do not know')
     return False
 
 
@@ -183,6 +185,11 @@ def riddleWordCB(msg):
     global mutex
     #global last_time_stamp
     print("riddleCB")
+    if 'Sorry' in msg.data:
+        print '!'*50
+        #answer_pub.publish(True)
+        return
+
     if 'play' in msg.data:
         import youtube
         if 'oil' in msg.data:
@@ -203,7 +210,8 @@ def riddleWordCB(msg):
             #last_time_stamp = datetime.datetime.now()
             
             answer = Bool()
-            Behavior.Behavior().picoSpeaker('Your question is ' + word)
+            #Behavior.Behavior().picoSpeaker('Your question is ' + word)
+            google_tts.say('Your question is ' + word)
             rospy.sleep(2) # sec
             answer.data = SpeechTextToBehavior(word, spr = True)
             rospy.sleep(3) # sec
