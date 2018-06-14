@@ -2,10 +2,10 @@
 # reference : https://github.com/kyordhel/GPSRCmdGen
 
 # [ParameterStart]----------------------->
-IS_ROS_ACTIVE = True 
+IS_ROS_ACTIVE = False 
 INTERVAL_TALK_END_TO_START = 5.0 # sec
 match_ratio_threshold = 0.7 # 0 ~ 1
-is_do_input_test = False
+is_do_input_test = True
 # [ParameterEnd]------------------------
 
 import json
