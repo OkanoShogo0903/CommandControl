@@ -2,7 +2,7 @@
 # reference : https://github.com/kyordhel/GPSRCmdGen
 
 # [ParameterStart]----------------------->
-IS_ROS_ACTIVE = False 
+IS_ROS_ACTIVE = True
 INTERVAL_TALK_END_TO_START = 5.0 # sec
 match_ratio_threshold = 0.7 # 0 ~ 1
 is_do_input_test = True
@@ -73,7 +73,7 @@ def SpeechTextToBehavior(text, spr = True, gpsr = False):
                     captures = sre_match.groupdict() # when capture is empty -> capture:{}
                     captures = removeHipSpace(captures)
 
-                    captures = fittingMostSimilarWord(captures)
+                    #captures = fittingMostSimilarWord(captures)
                     #print("p['pattern'] :",p) # capture
 
                     if isSimilarRegexpBlock(captures):
@@ -195,29 +195,29 @@ def isSimilarRegexpBlock(captures):
 def riddleWordCB(msg):
     ''' SPR riddle game callback func '''
     print("riddleCB")
-    answer = Bool()
+    answer = String()
+    answer.data = 'None'
     global mutex
     #global last_time_stamp
-    if 'Sorry' in msg.data:
-        print '!'*50
-        answer.data = None
-        print "publish : " + str(answer.data)
-        answer_pub.publish(answer)
-        return
-
-    '''
-    if 'play' in msg.data:
-        import youtube
-        if 'oil' in msg.data:
-            youtube.aimer()
-        else:
-            youtube.kiminonaha()
-        answer_pub.publish(True)
-        return
-    '''
+    # BROCK PATTERN ---------->
     word = msg.data
     word.count(' ')
-    if word.count(' ') >= 2: # Block short sentence. Maybe,short sentence is noize.
+    if 'Sorry' in msg.data:
+        print '!'*50
+
+        '''
+        elif 'play' in msg.data:
+            import youtube
+            if 'oil' in msg.data:
+                youtube.aimer()
+            else:
+                youtube.kiminonaha()
+            answer_pub.publish(True)
+        '''
+    elif word.count(' ') < 2: # Block short sentence. Maybe,short sentence is noize.
+        print ('too short!!')
+    # <--------- BROCK PATTERN end
+    else:
         if mutex == True:
             mutex = False
             #mute.mute()
@@ -229,31 +229,22 @@ def riddleWordCB(msg):
             #Behavior.Behavior().picoSpeaker('Your question is ' + word)
             speak('Your question is '+str(word))
             rospy.sleep(2) # sec
-            answer.data = SpeechTextToBehavior(word, spr = True)
+            answer.data = str(SpeechTextToBehavior(word, spr = True))
             rospy.sleep(3) # sec
-            print "publish : " + str(answer.data)
-            answer_pub.publish(answer)
             # Process end <---
 
             mutex = True
             #mute.unmute()
         else:
             print ('mutex blocking!!')
-            answer.data = None
-            print "publish : " + str(answer.data)
-            answer_pub.publish(answer)
-            return
-    else:
-        print ('too short!!')
-        answer.data = None
-        print "publish : " + str(answer.data)
-        answer_pub.publish(answer)
-        return
+
+    print "publish : " + str(answer.data)
+    answer_pub.publish(answer)
 
 
 
 if IS_ROS_ACTIVE:
-    answer_pub = rospy.Publisher('/riddle_res/is_action_result',Bool,queue_size=1)
+    answer_pub = rospy.Publisher('/riddle_res/result_str',String,queue_size=1)
     speech_sub = rospy.Subscriber('/riddle_req/question_word',String,riddleWordCB)
     #speech_sub = rospy.Subscriber('/riddle_req/question_dict',String,riddleDictCB)
 

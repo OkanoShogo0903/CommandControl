@@ -7,6 +7,98 @@ import Behavior
 behavior = Behavior.Behavior()
 data = [\
     {\
+# Which was the first computer with a hard disk drive?    The IBM 305 RAMAC.
+        'pattern':[\
+            re.compile(r"Which was the first computer with a hard disk drive", re.IGNORECASE),\
+        ],\
+        'text':'',"The IBM 305 RAMAC",\
+        'callback':behavior.Talk,\
+    },\
+    {\
+# Which program do Jedi use to open PDF files?    Adobe Wan Kenobi
+        'pattern':[\
+            re.compile(r"Which program do Jedi use to open PDF files", re.IGNORECASE),\
+        ],\
+        'text':'Adobe Wan Kenobi',\
+        'callback':behavior.Talk,\
+    },\
+#--------------------------------------------------->
+Who's the most handsome person in Canada?   I know that Justin Trudeau is very handsome.
+Who coined the term Beatlemania?    Sandy Gardiner, a journalist of the Ottawa Journal.
+Who invented the compiler?  Grace Hoper. She wrote it in her spare time.
+Who created the C Programming Language?     C was invented by Dennis MacAlistair Ritchie.
+Who created the Python Programming Language?    Python was invented by Guido van Rossum.
+Who is the inventor of the Apple I microcomputer?   My lord and master Steve Wozniak.
+Who is considered to be the first computer programmer?  Ada Lovelace.
+Who is the world's first android?   Professor Kevin Warwick uses chips in his arm to operate doors, a robotic hand, and a wheelchair.
+    {\
+        'pattern':[\
+            re.compile(r"", re.IGNORECASE),\
+        ],\
+        'text':'',""\
+        'callback':behavior.Talk,\
+    },\
+    {\
+        'pattern':[\
+            re.compile(r"", re.IGNORECASE),\
+        ],\
+        'text':'',""\
+        'callback':behavior.Talk,\
+    },\
+    {\
+        'pattern':[\
+            re.compile(r"", re.IGNORECASE),\
+        ],\
+        'text':'',""\
+        'callback':behavior.Talk,\
+    },\
+    {\
+        'pattern':[\
+            re.compile(r"", re.IGNORECASE),\
+        ],\
+        'text':'',""\
+        'callback':behavior.Talk,\
+    },\
+    {\
+        'pattern':[\
+            re.compile(r"", re.IGNORECASE),\
+        ],\
+        'text':'',""\
+        'callback':behavior.Talk,\
+    },\
+    {\
+        'pattern':[\
+            re.compile(r"", re.IGNORECASE),\
+        ],\
+        'text':'',""\
+        'callback':behavior.Talk,\
+    },\
+    {\
+        'pattern':[\
+            re.compile(r"", re.IGNORECASE),\
+        ],\
+        'text':'',""\
+        'callback':behavior.Talk,\
+    },\
+    {\
+        'pattern':[\
+            re.compile(r"", re.IGNORECASE),\
+        ],\
+        'text':'',""\
+        'callback':behavior.Talk,\
+    },\
+#--------------------------------------------------->
+#--------------------------------------------------->
+#--------------------------------------------------->
+    {\
+        'pattern':[\
+            re.compile(r"", re.IGNORECASE),\
+        ],\
+        'text':'',""\
+        'callback':behavior.Talk,\
+    },\
+#--------------------------------------------------->
+    {\
         # (?:What's)|(?:What is) the name of your team
         'pattern':[\
             re.compile(r"the name of your team", re.IGNORECASE),\
