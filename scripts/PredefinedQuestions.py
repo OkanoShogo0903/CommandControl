@@ -9,7 +9,7 @@ data = [\
     {\
 # Which was the first computer with a hard disk drive?    The IBM 305 RAMAC.
         'pattern':[\
-            re.compile(r"Which was the first computer with a hard disk drive", re.IGNORECASE),\
+            re.compile(r"Which was the first computer", re.IGNORECASE),\
         ],\
         'text':"The IBM 305 RAMAC",\
         'callback':behavior.Talk,\
@@ -17,7 +17,9 @@ data = [\
     {\
 # Which program do Jedi use to open PDF files?    Adobe Wan Kenobi
         'pattern':[\
-            re.compile(r"Which program do Jedi use to open PDF files", re.IGNORECASE),\
+            re.compile(r"program", re.IGNORECASE),\
+            re.compile(r"Jedi", re.IGNORECASE),\
+            re.compile(r"PDF", re.IGNORECASE),\
         ],\
         'text':'Adobe Wan Kenobi',\
         'callback':behavior.Talk,\
@@ -26,7 +28,8 @@ data = [\
 # Who's the most handsome person in Canada? I know that Justin Trudeau is very handsome
     {\
         'pattern':[\
-            re.compile(r"Who's the most handsome person in Canada", re.IGNORECASE),\
+            re.compile(r"handsome", re.IGNORECASE),\
+            re.compile(r"person in", re.IGNORECASE),\
         ],\
         'text':'I know that Justin Trudeau is very handsome',\
         'callback':behavior.Talk,\
@@ -34,7 +37,8 @@ data = [\
     {\
 # Who coined the term Beatlemania? Sandy Gardiner, a journalist of the Ottawa Journal
         'pattern':[\
-            re.compile(r"Who coined the term Beatlemania", re.IGNORECASE),\
+            re.compile(r"coined", re.IGNORECASE),\
+            re.compile(r"Beatlemania", re.IGNORECASE),\
         ],\
         'text':'Sandy Gardiner, a journalist of the Ottawa Journal',\
         'callback':behavior.Talk,\
@@ -42,7 +46,7 @@ data = [\
     {\
 # Who invented the compiler?  Grace Hoper. She wrote it in her spare time.
         'pattern':[\
-            re.compile(r"Who invented the compiler", re.IGNORECASE),\
+            re.compile(r"invented", re.IGNORECASE),\
         ],\
         'text':'Grace Hoper. She wrote it in her spare time',\
         'callback':behavior.Talk,\
@@ -50,7 +54,7 @@ data = [\
     {\
 # Who created the C Programming Language?     C was invented by Dennis MacAlistair Ritchie.
         'pattern':[\
-            re.compile(r"Who created the C Programming Language", re.IGNORECASE),\
+            re.compile(r"C Programming Language", re.IGNORECASE),\
         ],\
         'text':'C was invented by Dennis MacAlistair Ritchie',\
         'callback':behavior.Talk,\
@@ -58,7 +62,7 @@ data = [\
     {\
 # Who created the Python Programming Language?    Python was invented by Guido van Rossum.
         'pattern':[\
-            re.compile(r"Who created the Python Programming Language", re.IGNORECASE),\
+            re.compile(r"Python", re.IGNORECASE),\
         ],\
         'text':'Python was invented by Guido van Rossum',\
         'callback':behavior.Talk,\
@@ -66,7 +70,8 @@ data = [\
     {\
 # Who is the inventor of the Apple I microcomputer?   My lord and master Steve Wozniak.
         'pattern':[\
-            re.compile(r"Who is the inventor of the Apple I microcomputer", re.IGNORECASE),\
+            re.compile(r"inventor", re.IGNORECASE),\
+            re.compile(r"microcomputer", re.IGNORECASE),\
         ],\
         'text':'My lord and master Steve Wozniak',\
         'callback':behavior.Talk,\
@@ -74,7 +79,9 @@ data = [\
     {\
 # Who is considered to be the first computer programmer?  Ada Lovelace.
         'pattern':[\
-            re.compile(r"Who is considered to be the first computer programmer", re.IGNORECASE),\
+            re.compile(r"considered", re.IGNORECASE),\
+            re.compile(r"to be the", re.IGNORECASE),\
+            re.compile(r"first computer programmer", re.IGNORECASE),\
         ],\
         'text':'Ada Lovelace',\
         'callback':behavior.Talk,\
@@ -82,7 +89,8 @@ data = [\
     {\
 # Who is the world's first android?   Professor Kevin Warwick uses chips in his arm to operate doors, a robotic hand, and a wheelchair.
         'pattern':[\
-            re.compile(r"Who is the world's first android", re.IGNORECASE),\
+            re.compile(r"Who is the", re.IGNORECASE),\
+            re.compile(r"android", re.IGNORECASE),\
         ],\
         'text':'Professor Kevin Warwick uses chips in his arm to operate doors, a robotic hand, and a wheelchair',\
         'callback':behavior.Talk,\
@@ -91,6 +99,7 @@ data = [\
 #What's the longest street in the world?     Yonge Street in Ontario is the longest street in the world.
     {\
         'pattern':[\
+            re.compile(r"longest street", re.IGNORECASE),\
             re.compile(r"What's the longest street in the world", re.IGNORECASE),\
         ],\
         'text':'Yonge Street in Ontario is the longest street in the world',\
@@ -99,7 +108,12 @@ data = [\
     {\
 #What's the name of the bear cub exported from Canada to the London Zoo in 1915?     The bear cub was named Winnipeg. It inspired the stories of Winnie-the-Pooh.
         'pattern':[\
-            re.compile(r"What's the name of the bear cub exported from Canada to the London Zoo in 1915", re.IGNORECASE),\
+            re.compile(r"bear", re.IGNORECASE),\
+            re.compile(r"cub", re.IGNORECASE),\
+            re.compile(r"exported", re.IGNORECASE),\
+            re.compile(r"London", re.IGNORECASE),\
+            re.compile(r"Zoo", re.IGNORECASE),\
+            re.compile(r"1915", re.IGNORECASE),\
         ],\
         'text':'The bear cub was named Winnipeg. It inspired the stories of Winnie-the-Pooh',\
         'callback':behavior.Talk,\
@@ -107,7 +121,10 @@ data = [\
     {\
 #What's the origin of the Comic Sans font?   Comic Sans is based on Dave Gibbons' lettering in the Watchmen comic books.
         'pattern':[\
-            re.compile(r"What's the origin of the Comic Sans font", re.IGNORECASE),\
+            re.compile(r"origin", re.IGNORECASE),\
+            re.compile(r"Comic", re.IGNORECASE),\
+            re.compile(r"Sans", re.IGNORECASE),\
+            re.compile(r"font", re.IGNORECASE),\
         ],\
         'text':"Comic Sans is based on Dave Gibbons' lettering in the Watchmen comic books",\
         'callback':behavior.Talk,\
@@ -115,7 +132,7 @@ data = [\
     {\
 #What is the world's largest coin?   The Big Nickel in Sudbury, Ontario. It is nine meters in diameter.
         'pattern':[\
-            re.compile(r"What is the world's largest coin", re.IGNORECASE),\
+            re.compile(r"coin", re.IGNORECASE),\
         ],\
         'text':'The Big Nickel in Sudbury, Ontario. It is nine meters in diameter',\
         'callback':behavior.Talk,\
@@ -123,7 +140,7 @@ data = [\
     {\
 #What is a nanobot?  The smallest robot possible is called a nanobot.
         'pattern':[\
-            re.compile(r"What is a nanobot", re.IGNORECASE),\
+            re.compile(r"is a nanobot", re.IGNORECASE),\
         ],\
         'text':'The smallest robot possible is called a nanobot',\
         'callback':behavior.Talk,\
@@ -131,7 +148,8 @@ data = [\
     {\
 # What is a Mechanical Knight?    A robot sketch made by Leonardo DaVinci.
         'pattern':[\
-            re.compile(r"What is a Mechanical Knight", re.IGNORECASE),\
+            re.compile(r"Mechanical", re.IGNORECASE),\
+            re.compile(r"Knight", re.IGNORECASE),\
         ],\
         'text':'A robot sketch made by Leonardo DaVinci',\
         'callback':behavior.Talk,\
@@ -139,7 +157,9 @@ data = [\
     {\
 #What is the AI knowledge engineering bottleneck?    It is when you need to load an AI with enough knowledge to start learning.
         'pattern':[\
-            re.compile(r"What is the AI knowledge engineering bottleneck", re.IGNORECASE),\
+            re.compile(r"knowledge", re.IGNORECASE),\
+            re.compile(r"engineering", re.IGNORECASE),\
+            re.compile(r"bottleneck", re.IGNORECASE),\
         ],\
         'text':'It is when you need to load an AI with enough knowledge to start learning',\
         'callback':behavior.Talk,\
@@ -221,7 +241,8 @@ data = [\
     {\
 #When was the first computer with a hard disk drive launched?    The IBM 305 RAMAC was launched in 1956.
         'pattern':[\
-            re.compile(r"When was the first computer with a hard disk drive launched", re.IGNORECASE),\
+            re.compile(r"When was the first computer", re.IGNORECASE),\
+            re.compile(r"disk drive launched", re.IGNORECASE),\
         ],\
         'text':"The IBM 305 RAMAC was launched in 1956",\
         'callback':behavior.Talk,\
@@ -438,119 +459,4 @@ data = [\
         'callback':behavior.TalkToday,\
     },\
 #--------------------------------------------------->
-    {\
-        # Who invented the C programming language
-        'pattern':[\
-            re.compile(r'Who invented the C', re.IGNORECASE),\
-            re.compile(r'invented the C ', re.IGNORECASE),\
-        ],\
-        'text':'Ken Thompson and Dennis Ritchie',\
-        'callback':behavior.Talk,\
-    },\
-    {\
-        # When was the C programming language invented
-        'pattern':[\
-            re.compile(r'When was the C', re.IGNORECASE),\
-            re.compile(r'C programming language invented', re.IGNORECASE),\
-        ],\
-        'text':'C was developed after B in 1972 at Bell Labs',\
-        'callback':behavior.Talk,\
-    },\
-    {\
-        # When was the B programming language invented
-        'pattern':[\
-            re.compile(r'When was the B', re.IGNORECASE),\
-            re.compile(r'B programming', re.IGNORECASE),\
-        ],\
-        'text':'B was developed circa 1969 at Bell Labs',\
-        'callback':behavior.Talk,\
-    },\
-    {\
-        # Where does the term computer bug come from
-        'pattern':[\
-            re.compile(r'Where does the term', re.IGNORECASE),\
-            re.compile(r'computer bug come from', re.IGNORECASE),\
-        ],\
-        'text':'From a moth trapped in a relay',\
-        'callback':behavior.Talk,\
-    },\
-    {\
-        # Who invented the first compiler
-        'pattern':[\
-            re.compile(r'Who invented the first', re.IGNORECASE),\
-            re.compile(r'the first', re.IGNORECASE),\
-        ],\
-        'text':'Grace Brewster Murray Hopper invented it',\
-        'callback':behavior.Talk,\
-    },\
-    {\
-        # Which robot is used in the Open Platform League
-        'pattern':[\
-            re.compile(r'Open', re.IGNORECASE),\
-        ],\
-        'text':'There is no standard defined for OPL',\
-        'callback':behavior.Talk,\
-    },\
-    {\
-        # Which robot is used in the Domestic Standard Platform League
-        'pattern':[\
-            re.compile(r'Domestic', re.IGNORECASE),\
-        ],\
-        'text':'The Toyota Human Support Robot',\
-        'callback':behavior.Talk,\
-    },\
-    {\
-        # Which robot is used in the Social Standard Platform League
-        'pattern':[\
-            re.compile(r'Social', re.IGNORECASE),\
-            re.compile(r'Standard', re.IGNORECASE),\
-        ],\
-        'text':'The SoftBank Robotics Pepper',\
-        'callback':behavior.Talk,\
-    },\
-    {\
-        # Do you have dreams
-        'pattern':[\
-            re.compile(r'you have', re.IGNORECASE),\
-            re.compile(r'dream', re.IGNORECASE),\
-        ],\
-        'text':'I dream of Electric Sheep',\
-        'callback':behavior.Talk,\
-    },\
-    {\
-        # In which city will next year's RoboCup be hosted
-        'pattern':[\
-            re.compile(r"city", re.IGNORECASE),\
-            re.compile(r"next year", re.IGNORECASE),\
-            re.compile(r"RoboCup be host", re.IGNORECASE),\
-        ],\
-        'text':"It hasn't been announced yet",\
-        'callback':behavior.Talk,\
-    },\
-    {\
-        # What is the origin of the name Canada
-        'pattern':[\
-            re.compile(r'What is the origin', re.IGNORECASE),\
-            re.compile(r'name Canada', re.IGNORECASE),\
-        ],\
-        'text':'The name Canada comes from the Iroquois word Kanata, meaning village or settlement',\
-        'callback':behavior.Talk,\
-    },\
-    {\
-        # What is the capital of Canada
-        'pattern':[\
-            re.compile(r'capital', re.IGNORECASE),\
-        ],\
-        'text':'The capital of Canada is Ottawa',\
-        'callback':behavior.Talk,\
-    },\
-    {\
-        # What is the national anthem of Canada
-        'pattern':[\
-            re.compile(r'anthem of Canada', re.IGNORECASE),\
-            re.compile(r'national', re.IGNORECASE),\
-        ],\
-        'text':'O Canada',\
-        'callback':behavior.Talk,\
-    },\
 ]
