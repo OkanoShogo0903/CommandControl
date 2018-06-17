@@ -1,52 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <rooms>
-  <room name="bedroom" door="2">
-    <location name="bed" isBeacon="true" size="1000" num="1" />
-    <location name="night table" isPlacement="true" size="100" num="1" />
-    <location name="wardrobe" isPlacement="true" size="100" num="1" />
-    <location name="dresser" isPlacement="true" size="100" num="1" />
-    <location name="armchair" isBeacon="true" size="100" num="1" />
-    <location name="drawer" isPlacement="true" size="100" num="1" />
-    <location name="desk" isBeacon="true" isPlacement="true" size="100" num="1" />
+  <room name="dining room" door="0">
+    <location name="dining table" size="100" num="1" />
   </room>
-  <room name="dining room" door="2">
-    <location name="sideboard" isPlacement="true" size="100" num="1" />
-    <location name="cutlery drawer" isPlacement="true" size="100" num="1" />
-    <location name="dining table" isBeacon="true" isPlacement="true" size="100" num="1" />
-    <location name="chair" isBeacon="true" size="100" num="1" />
-    <location name="baby chair" isBeacon="true" size="100" num="1" />
-  </room>
-  <room name="living room" door="2">
-    <location name="bookshelf" isPlacement="true" size="100" num="1" />
-    <location name="sofa" isBeacon="true" isPlacement="true" size="100" num="1" />
-    <location name="coffee table" isBeacon="true" isPlacement="true" size="100" num="1" />
-    <location name="center table" isPlacement="true" size="100" num="1" />
-    <location name="bar" isPlacement="true" size="100" num="1" />
-    <location name="fireplace" isPlacement="true" size="100" num="1" />
-    <location name="tv couch" isBeacon="true" size="100" num="1" />
-  </room>
-  <room name="kitchen" door="2">
-    <location name="microwave" isPlacement="true" size="100" num="1" />
-    <location name="cupboard" isPlacement="true" size="100" num="1" />
-    <location name="counter" isPlacement="true" size="100" num="1" />
-    <location name="cabinet" isPlacement="true" size="100" num="1" />
-    <location name="sink" isBeacon="true" isPlacement="true" size="100" num="1" />
-    <location name="stove" isBeacon="true" isPlacement="true" size="100" num="1" />
-    <location name="fridge" isPlacement="true" size="100" num="1" />
-    <location name="freezer" isPlacement="true" size="100" num="1" />
-    <location name="washing machine" isPlacement="true" size="100" num="1" />
-    <location name="dishwasher" isPlacement="true" size="100" num="1" />
+  <room name="kitchen" door="1">
+    <location name="cupboard" size="100" num="1" />
+    <location name="storage table" size="100" num="1" />
+    <location name="sink" size="100" num="1" />
+    <location name="counter" size="100" num="1" />
+    <location name="dishwasher" size="100" num="1" />
   </room>
   <room name="corridor" door="1">
-    <location name="cabinet" isBeacon="true" isPlacement="true" size="100" num="1" />
+    <location name="nothing" size="1" num="1" />
   </room>
-  <room name="bathroom" door="1">
-    <location name="bidet" isBeacon="true" size="100" num="1" />
-    <location name="shower" isBeacon="true" size="100" num="1" />
-    <location name="bathtub" isBeacon="true" size="100" num="1" />
-    <location name="toilet" isBeacon="true" size="100" num="1" />
-    <location name="towel rail" isPlacement="true" size="100" num="1" />
-    <location name="bathroom cabinet" isPlacement="true" size="100" num="1" />
-    <location name="washbasin" isBeacon="true" isPlacement="true" size="100" num="1" />
+  <room name="bedroom" door="1">
+    <location name="side table" size="100" num="1" />
+    <location name="bed" size="100" num="1" />
+    <location name="desk" size="100" num="1" />
+  </room>
+  <room name="living room" door="1">
+    <location name="end table" size="100" num="1" />
+    <location name="couch" size="100" num="1" />
+    <location name="bookcase" size="100" num="1" />
   </room>
 </rooms>
