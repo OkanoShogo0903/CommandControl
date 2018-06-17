@@ -1,52 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <rooms>
-  <room name="bedroom" door="2">
-    <location name="bed" size="1000" num="1" />
-    <location name="night table" size="100" num="1" />
-    <location name="wardrobe" size="100" num="1" />
-    <location name="dresser" size="100" num="1" />
-    <location name="armchair" size="100" num="1" />
-    <location name="drawer" size="100" num="1" />
-    <location name="desk" isPlacement="true" size="100" num="1" />
+  <room name="dining room" door="0">
+    <location name="dining table" size="100" num="1" />
   </room>
-  <room name="dining room" door="2">
-    <location name="sideboard" size="100" num="1" />
-    <location name="cutlery drawer" size="100" num="1" />
-    <location name="dining table" isPlacement="true" size="100" num="1" />
-    <location name="chair" size="100" num="1" />
-    <location name="baby chair" size="100" num="1" />
-  </room>
-  <room name="living room" door="2">
-    <location name="bookshelf" size="100" num="1" />
-    <location name="sofa" isPlacement="true" size="100" num="1" />
-    <location name="coffee table" size="100" num="1" />
-    <location name="center table" size="100" num="1" />
-    <location name="bar" size="100" num="1" />
-    <location name="fireplace" size="100" num="1" />
-    <location name="tv couch" size="100" num="1" />
-  </room>
-  <room name="kitchen" door="2">
-    <location name="microwave" size="100" num="1" />
+  <room name="kitchen" door="1">
     <location name="cupboard" size="100" num="1" />
-    <location name="counter" size="100" num="1" />
-    <location name="cabinet" size="100" num="1" />
+    <location name="storage table" size="100" num="1" />
     <location name="sink" size="100" num="1" />
-    <location name="stove" size="100" num="1" />
-    <location name="fridge" size="100" num="1" />
-    <location name="freezer" size="100" num="1" />
-    <location name="washing machine" size="100" num="1" />
+    <location name="counter" size="100" num="1" />
     <location name="dishwasher" size="100" num="1" />
   </room>
   <room name="corridor" door="1">
-    <location name="cabinet" size="100" num="1" />
+    <location name="nothing" size="1" num="1" />
   </room>
-  <room name="bathroom" door="1">
-    <location name="bidet" size="100" num="1" />
-    <location name="shower" size="100" num="1" />
-    <location name="bathtub" size="100" num="1" />
-    <location name="toilet" size="100" num="1" />
-    <location name="towel rail" size="100" num="1" />
-    <location name="bathroom cabinet" size="100" num="1" />
-    <location name="washbasin" size="100" num="1" />
+  <room name="bedroom" door="1">
+    <location name="side table" size="100" num="1" />
+    <location name="bed" size="100" num="1" />
+    <location name="desk" size="100" num="1" />
+  </room>
+  <room name="living room" door="1">
+    <location name="end table" size="100" num="1" />
+    <location name="couch" size="100" num="1" />
+    <location name="bookcase" size="100" num="1" />
   </room>
 </rooms>
