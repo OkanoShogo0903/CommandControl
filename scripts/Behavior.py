@@ -23,7 +23,9 @@ class Behavior():
     def Talk(self, text):
         print("A :", text)
         #self.picoSpeaker(text)
-        google_tts.say(text)
+        #google_tts.say(text)
+        voice_cmd = '/usr/bin/picospeaker %s' %text
+        subprocess.call(voice_cmd.strip().split(' '))
         return True
 
 
@@ -321,7 +323,7 @@ class Behavior():
                 answers.append(i_dict['name'])
         # output
         if len(answers) == 0:
-            self.Talk(text="I don't know")
+            self.Talk(text='Stored objects are zero')
         else:
             string = ' '.join(answers) # joint each name
             self.Talk(text='Stored objects are '+string)
@@ -372,7 +374,8 @@ class Behavior():
 
         else:
             self.Talk(text="I don't know")
-            return True # have no false
+            return False
+            #return True # have no false
 
         result_dict = self.getComparedResultDict(comparison, targets)
 

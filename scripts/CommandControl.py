@@ -19,9 +19,21 @@ import PredefinedQuestions
 import ArenaQuestions
 import ObjectQuestions
 import CrowdQuestions
+import subprocess
 
 import google_tts
 #import mute
+    #Behavior.Behavior().picoSpeaker('Sorry. I do not know')
+def speak(sentence):
+    #google_tts.say(sentence)
+    try:
+        voice_cmd = '/usr/bin/picospeaker %s' %sentence
+        subprocess.call(voice_cmd.strip().split(' '))
+        print "[PICO] " + sentence
+    except OSError:
+        print "[PICO] Speacker is not activate. Or not installed picospeaker."
+
+
 # For ros ----------->
 if IS_ROS_ACTIVE is True:
     import rospy
@@ -85,8 +97,8 @@ def SpeechTextToBehavior(text, spr = True, gpsr = False):
     #print('A : Please talk again')
     #Behavior.Behavior().picoSpeaker('Please talk again')
     print("A : Sorry. I don't know")
-    #Behavior.Behavior().picoSpeaker('Sorry. I do not know')
-    google_tts.say('Sorry. I do not know')
+    speak('Sorry. I do not know')
+
     return False
 
 
@@ -182,14 +194,18 @@ def isSimilarRegexpBlock(captures):
 # ros interface ---->
 def riddleWordCB(msg):
     ''' SPR riddle game callback func '''
+    print("riddleCB")
+    answer = Bool()
     global mutex
     #global last_time_stamp
-    print("riddleCB")
     if 'Sorry' in msg.data:
         print '!'*50
-        #answer_pub.publish(True)
+        answer.data = None
+        print "publish : " + str(answer.data)
+        answer_pub.publish(answer)
         return
 
+    '''
     if 'play' in msg.data:
         import youtube
         if 'oil' in msg.data:
@@ -198,6 +214,7 @@ def riddleWordCB(msg):
             youtube.kiminonaha()
         answer_pub.publish(True)
         return
+    '''
     word = msg.data
     word.count(' ')
     if word.count(' ') >= 2: # Block short sentence. Maybe,short sentence is noize.
@@ -209,9 +226,8 @@ def riddleWordCB(msg):
             #if voice_dict['time_stamp'] > last_time_stamp + datetime.timedelta(seconds=INTERVAL_TALK_END_TO_START):
             #last_time_stamp = datetime.datetime.now()
             
-            answer = Bool()
             #Behavior.Behavior().picoSpeaker('Your question is ' + word)
-            google_tts.say('Your question is ' + word)
+            speak('Your question is '+str(word))
             rospy.sleep(2) # sec
             answer.data = SpeechTextToBehavior(word, spr = True)
             rospy.sleep(3) # sec
@@ -223,6 +239,17 @@ def riddleWordCB(msg):
             #mute.unmute()
         else:
             print ('mutex blocking!!')
+            answer.data = None
+            print "publish : " + str(answer.data)
+            answer_pub.publish(answer)
+            return
+    else:
+        print ('too short!!')
+        answer.data = None
+        print "publish : " + str(answer.data)
+        answer_pub.publish(answer)
+        return
+
 
 
 if IS_ROS_ACTIVE:
@@ -272,7 +299,7 @@ if __name__ == '__main__':
 
         #SpeechTextToBehavior(text="How many tuna fish are in the kitchen")
         #SpeechTextToBehavior(text="How many snacks are in the desk")
-        #SpeechTextToBehavior(text="How many snacks are in the kitchen")
+        SpeechTextToBehavior(text="How many snacks are in the kitchen")
 
         #SpeechTextToBehavior(text="What names are stored in the bathroom cabinet")
 
