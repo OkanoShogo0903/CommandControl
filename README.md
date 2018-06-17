@@ -1,14 +1,20 @@
 # CommandControl
 SPRとGPSR用のコードで、音声認識結果のテキストをもらって返答のテキストを書くところ
 
-## install
+## Install
+Xmldata  
 ```
 $ pip install xmltodict
+```
+Google TTS(no bebug install code)  
+```
+$ pip install google-cloud-texttospeech==0.1.0
 ```
 
 ## 大会当日にすること
 [ ] SPRを行う部屋を`SPR_PLAY_ROOM`で設定しとく.`vim CommandControl/Behavior.py`
 [ ] 部屋のドアの数を記入する
+[ ] 各XMLファイルを記入する
 [ ] Object.xmlとLocation.xmlのデータを記入する
 [ ] SPRに使うかGPSRに使うかの変更をする
 
