@@ -167,7 +167,7 @@ data = [\
     {\
 #What is a chatbot?  A chatbot is an A.I. you put in customer service to avoid paying salaries.
         'pattern':[\
-            re.compile(r"What is a chatbot", re.IGNORECASE),\
+            re.compile(r"chatbot", re.IGNORECASE),\
         ],\
         'text':'you put in customer service to avoid paying salaries',\
         'callback':behavior.Talk,\
@@ -175,7 +175,7 @@ data = [\
     {\
 #What was the first computer bug?    The first actual computer bug was a dead moth stuck in a Harvard Mark II.
         'pattern':[\
-            re.compile(r"What was the first computer bug", re.IGNORECASE),\
+            re.compile(r"first computer bug", re.IGNORECASE),\
         ],\
         'text':'The first actual computer bug was a dead moth stuck in a Harvard Mark two',\
         'callback':behavior.Talk,\
@@ -183,7 +183,8 @@ data = [\
     {\
 #What was the first computer to pass the Turing test?    some people think it was ibm watson, but it was eugene, a computer designed at england's university of reading.
         'pattern':[\
-            re.compile(r"What was the first computer to pass the Turing test", re.IGNORECASE),\
+            re.compile(r"the Turing test", re.IGNORECASE),\
+            re.compile(r"first computer to", re.IGNORECASE),\
         ],\
         'text':"some people think it was ibm watson, but it was eugene, a computer designed at england's university of reading",\
         'callback':behavior.Talk,\
@@ -191,7 +192,9 @@ data = [\
     {\
 #What does CAPTCHA stands for?   CAPTCHA is an acronym for Completely Automated Public Turing test to tell Computers and Humans Apart.
         'pattern':[\
-            re.compile(r"What does CAPTCHA stands for", re.IGNORECASE),\
+            re.compile(r"What does c", re.IGNORECASE),\
+            re.compile(r"stands for", re.IGNORECASE),\
+            re.compile(r"stand for", re.IGNORECASE),\
         ],\
         'text':'CAPTCHA is an acronym for Completely Automated Public Turing test to tell Computers and Humans Apart',\
         'callback':behavior.Talk,\
@@ -199,15 +202,26 @@ data = [\
     {\
 #What does Moravec's paradox state?  Moravec's paradox states that a computer can crunch numbers like Bernoulli, but lacks a toddler's motor skills.
         'pattern':[\
-            re.compile(r"What does Moravec's paradox state", re.IGNORECASE),\
+            re.compile(r"What does m", re.IGNORECASE),\
+            re.compile(r"paradox", re.IGNORECASE),\
+            re.compile(r"state", re.IGNORECASE),\
         ],\
         'text':"Moravec's paradox states that a computer can crunch numbers like Bernoulli, but lacks a toddler's motor skills",\
+        'callback':behavior.Talk,\
+    },\
+# In what year was Canada invaded by the USA for the first time?  The first time that the USA invaded Canada was in 1775
+    {\
+        'pattern':[\
+            re.compile(r"In what year", re.IGNORECASE),\
+            re.compile(r"for the first time", re.IGNORECASE),\
+        ],\
+        'text':"The first time that the USA invaded Canada was in 1775",\
         'callback':behavior.Talk,\
     },\
     {\
 # What year was Canada invaded by the USA for the second time?    The USA invaded Canada a second time in 1812.
         'pattern':[\
-            re.compile(r"What year was Canada invaded by the USA for the second time", re.IGNORECASE),\
+            re.compile(r"the second time", re.IGNORECASE),\
         ],\
         'text':'The USA invaded Canada a second time in 1812',\
         'callback':behavior.Talk,\
@@ -215,7 +229,10 @@ data = [\
     {\
 # What country holds the record for the most gold medals at the Winter Olympics?  Canada does! With 14 Golds at the 2010 Vancouver Winter Olympics.
         'pattern':[\
-            re.compile(r"What country holds the record for the most gold medals at the Winter Olympics", re.IGNORECASE),\
+            re.compile(r"holds", re.IGNORECASE),\
+            re.compile(r"country", re.IGNORECASE),\
+            re.compile(r"gold medals", re.IGNORECASE),\
+            re.compile(r"Winter Olympics", re.IGNORECASE),\
         ],\
         'text':"Canada does! With 14 Golds at the 2010 Vancouver Winter Olympics",\
         'callback':behavior.Talk,\
@@ -223,7 +240,8 @@ data = [\
     {\
 # What else is Montreal called?   Montreal is often called the City of Saints or the City of a Hundred Bell Towers.
         'pattern':[\
-            re.compile(r"What else is Montreal called", re.IGNORECASE),\
+            re.compile(r"What else", re.IGNORECASE),\
+            re.compile(r"Montreal call", re.IGNORECASE),\
         ],\
         'text':'Montreal is often called the City of Saints or the City of a Hundred Bell Towers',\
         'callback':behavior.Talk,\
@@ -231,17 +249,18 @@ data = [\
 #--------------------------------------------------->
 # When
     {\
-#When was The Mounted Police formed?     The Mounted Police was formed in 1873.
+# When was The Mounted Police formed?     The Mounted Police was formed in 1873.
         'pattern':[\
-            re.compile(r"When was The Mounted Police formed", re.IGNORECASE),\
+            re.compile(r"The Mounted Police formed", re.IGNORECASE),\
+            re.compile(r"When was The M", re.IGNORECASE),\
         ],\
-        'text':"",\
+        'text':"The Mounted Police was formed in 1873",\
         'callback':behavior.Talk,\
     },\
     {\
-#When was the first computer with a hard disk drive launched?    The IBM 305 RAMAC was launched in 1956.
+# When was the first computer with a hard disk drive launched?    The IBM 305 RAMAC was launched in 1956.
         'pattern':[\
-            re.compile(r"When was the first computer", re.IGNORECASE),\
+            re.compile(r"When was the first", re.IGNORECASE),\
             re.compile(r"disk drive launched", re.IGNORECASE),\
         ],\
         'text':"The IBM 305 RAMAC was launched in 1956",\
@@ -250,7 +269,9 @@ data = [\
     {\
 #When was The Royal Canadian Mounted Police formed?  In 1920, when The Mounted Police merged with the Dominion Police.
         'pattern':[\
-            re.compile(r"When was The Royal Canadian Mounted Police formed", re.IGNORECASE),\
+            re.compile(r"When was The R", re.IGNORECASE),\
+            re.compile(r"royal", re.IGNORECASE),\
+            re.compile(r"Canadian Mounted", re.IGNORECASE),\
         ],\
         'text':"In 1920, when The Mounted Police merged with the Dominion Police",\
         'callback':behavior.Talk,\
@@ -261,7 +282,9 @@ data = [\
     {\
 # Why is Canada named Canada?     French explorers misunderstood the local native word "Kanata", which means village.
         'pattern':[\
-            re.compile(r"Why is Canada named Canada", re.IGNORECASE),\
+            re.compile(r"Why is Canada", re.IGNORECASE),\
+            re.compile(r"Canada named Canada", re.IGNORECASE),\
+            re.compile(r"named Canada", re.IGNORECASE),\
         ],\
         'text':"French explorers misunderstood the local native word 'Kanata', which means village",\
         'callback':behavior.Talk,\
@@ -269,7 +292,10 @@ data = [\
     {\
 # Why wasn't Tron nominated for an award by The Motion Picture Academy?   The Academy thought that Tron cheated by using computers.
         'pattern':[\
-            re.compile(r"Why wasn't Tron nominated for an award by The Motion Picture Academy", re.IGNORECASE),\
+            re.compile(r"Why was", re.IGNORECASE),\
+            re.compile(r"Tron nominated", re.IGNORECASE),\
+            re.compile(r"Motion Picture", re.IGNORECASE),\
+            re.compile(r"Academy", re.IGNORECASE),\
         ],\
         'text':"The Academy thought that Tron cheated by using computers",\
         'callback':behavior.Talk,\
@@ -277,7 +303,9 @@ data = [\
     {\
 # Why is Elon Musk worried about AI's impact on humanity?     I don't know. He should worry more about the people's impact on humanity.
         'pattern':[\
-            re.compile(r"Why is Elon Musk worried about AI's impact on humanity", re.IGNORECASE),\
+            re.compile(r"Why is Elon", re.IGNORECASE),\
+            re.compile(r"Elon Musk", re.IGNORECASE),\
+            re.compile(r"impact", re.IGNORECASE),\
         ],\
         'text':"I don't know. He should worry more about the people's impact on humanity",\
         'callback':behavior.Talk,\
@@ -287,7 +315,8 @@ data = [\
     {\
         'pattern':[\
 # Where was the Blackberry Smartphone developed?  It was developed in Ontario, at Research In Motion's Waterloo offices.
-            re.compile(r"Where was the Blackberry Smartphone developed", re.IGNORECASE),\
+            re.compile(r"Blackberry", re.IGNORECASE),\
+            re.compile(r"Smartphone", re.IGNORECASE),\
         ],\
         'text':"It was developed in Ontario, at Research In Motion's Waterloo offices",\
         'callback':behavior.Talk,\
@@ -295,7 +324,8 @@ data = [\
     {\
 # Where is The Hotel de Glace located?    The Hotel de Glace is in Quebec.
         'pattern':[\
-            re.compile(r"Where is The Hotel de Glace located", re.IGNORECASE),\
+            re.compile(r"Where is The Hotel", re.IGNORECASE),\
+            re.compile(r"Glace locate", re.IGNORECASE),\
         ],\
         'text':"The Hotel de Glace is in Quebec",\
         'callback':behavior.Talk,\
@@ -303,7 +333,7 @@ data = [\
     {\
 # Where is Canada's only desert?  Canada's only desert is British Columbia.
         'pattern':[\
-            re.compile(r"Where is Canada's only desert", re.IGNORECASE),\
+            re.compile(r"Where is Canada", re.IGNORECASE),\
         ],\
         'text':"Canada's only desert is British Columbia",\
         'callback':behavior.Talk,\
@@ -314,6 +344,7 @@ data = [\
 # How many time zones are there in Canada?    Canada spans almost 10 million square km and comprises 6 time zones
         'pattern':[\
             re.compile(r"How many time zones are there in Canada", re.IGNORECASE),\
+            re.compile(r"time zones", re.IGNORECASE),\
         ],\
         'text':"Canada spans almost 10 million square km and comprises 6 time zones",\
         'callback':behavior.Talk,\
@@ -321,7 +352,7 @@ data = [\
     {\
 # How long is Yonge Street in Ontario?    Yonge street is almost 2,000 km, starting at Lake Ontario, and running north to the Minnesota border.
         'pattern':[\
-            re.compile(r"How long is Yonge Street in Ontario", re.IGNORECASE),\
+            re.compile(r"How long", re.IGNORECASE),\
         ],\
         'text':"Yonge street is almost 2,000 km, starting at Lake Ontario, and running north to the Minnesota border",\
         'callback':behavior.Talk,\
@@ -329,7 +360,8 @@ data = [\
     {\
 # How big is the RCMP?    Today, the RCMP has close to 30,000 members.
         'pattern':[\
-            re.compile(r"How big is the RCMP", re.IGNORECASE),\
+            re.compile(r"How big is the", re.IGNORECASE),\
+            re.compile(r"RCMP", re.IGNORECASE),\
         ],\
         'text':"Today, the RCMP has close to 30,000 members",\
         'callback':behavior.Talk,\
@@ -337,7 +369,8 @@ data = [\
 # How many tons of ice are required to build The Hotel de Glace?  The Hotel de Glace requires about 400 tons of ice.
     {\
         'pattern':[\
-            re.compile(r"How many tons of ice are required to build The Hotel de Glace", re.IGNORECASE),\
+            re.compile(r"How many tons of ice", re.IGNORECASE),\
+            re.compile(r"ice are required to build The Hotel de Glace", re.IGNORECASE),\
         ],\
         'text':"The Hotel de Glace requires about 400 tons of ice",\
         'callback':behavior.Talk,\
@@ -345,7 +378,8 @@ data = [\
 # How many tons of snow are required to build The Hotel de Glace?     Every year, 12000 tons of snow are used for The Hotel de Glace.
     {\
         'pattern':[\
-            re.compile(r"How many tons of snow are required to build The Hotel de Glace", re.IGNORECASE),\
+            re.compile(r"How many tons of snow", re.IGNORECASE),\
+            re.compile(r"snow are required to build The Hotel de Glace", re.IGNORECASE),\
         ],\
         'text':"Every year, 12000 tons of snow are used for The Hotel de Glace",\
         'callback':behavior.Talk,\
@@ -353,7 +387,8 @@ data = [\
 # How big is Canada's only desert?    The British Columbia desert is only 15 miles long.
     {\
         'pattern':[\
-            re.compile(r"How big is Canada's only desert", re.IGNORECASE),\
+            re.compile(r"How big is Canada", re.IGNORECASE),\
+            re.compile(r"Canada's only", re.IGNORECASE),\
         ],\
         'text':"The British Columbia desert is only 15 miles long",\
         'callback':behavior.Talk,\
@@ -361,7 +396,8 @@ data = [\
 # How small can a nanobot be?     A nanobot can be less than one-thousandth of a millimeter.
     {\
         'pattern':[\
-            re.compile(r"How small can a nanobot be", re.IGNORECASE),\
+            re.compile(r"How small", re.IGNORECASE),\
+            re.compile(r"nanobot be", re.IGNORECASE),\
         ],\
         'text':"A nanobot can be less than one-thousandth of a millimeter",\
         'callback':behavior.Talk,\
@@ -371,23 +407,17 @@ data = [\
     {\
 # Can I visit the Hotel de Glace in summer?   No. Every summer it melts away, only to be rebuilt the following winter.
         'pattern':[\
-            re.compile(r"Can I visit the Hotel de Glace in summer", re.IGNORECASE),\
+            re.compile(r"Can I visit", re.IGNORECASE),\
+            re.compile(r"visit the", re.IGNORECASE),\
         ],\
         'text':"No. Every summer it melts away, only to be rebuilt the following winter",\
-        'callback':behavior.Talk,\
-    },\
-# In what year was Canada invaded by the USA for the first time?  The first time that the USA invaded Canada was in 1775
-    {\
-        'pattern':[\
-            re.compile(r"In what year was Canada invaded by the USA for the first time", re.IGNORECASE),\
-        ],\
-        'text':"The first time that the USA invaded Canada was in 1775",\
         'callback':behavior.Talk,\
     },\
 # Name 3 famous male Canadians.   leonard cohen, keanu reeves, and jim carrey.
     {\
         'pattern':[\
-            re.compile(r"Name 3 famous male Canadians", re.IGNORECASE),\
+            re.compile(r"Name 3 famous male Canadian", re.IGNORECASE),\
+            re.compile(r" male Canadian", re.IGNORECASE),\
         ],\
         'text':"Name 3 famous male Canadians",\
         'callback':behavior.Talk,\
@@ -395,7 +425,8 @@ data = [\
     {\
 # Name 3 famous female Canadians.     Celine Dion, Pamela Anderson, and Avril Lavigne.
         'pattern':[\
-            re.compile(r"Name 3 famous female Canadians", re.IGNORECASE),\
+            re.compile(r"Name 3 famous female", re.IGNORECASE),\
+            re.compile(r"female Canadian", re.IGNORECASE),\
         ],\
         'text':"Celine Dion, Pamela Anderson, and Avril Lavigne",\
         'callback':behavior.Talk,\
@@ -403,7 +434,10 @@ data = [\
     {\
 # Are self-driving cars safe?     yes. car accidents are product of human misconduct.
         'pattern':[\
-            re.compile(r"Are self-driving cars safe", re.IGNORECASE),\
+            re.compile(r"Are self", re.IGNORECASE),\
+            re.compile(r"driving", re.IGNORECASE),\
+            re.compile(r"cars safe", re.IGNORECASE),\
+            re.compile(r"car safe", re.IGNORECASE),\
         ],\
         'text':"Are self-driving cars safe",\
         'callback':behavior.Talk,\
@@ -411,7 +445,8 @@ data = [\
     {\
 # Is Mark Zuckerberg a robot?     sure. i've never seen him drink water.
         'pattern':[\
-            re.compile(r"Is Mark Zuckerberg a robot", re.IGNORECASE),\
+            re.compile(r"Is Mark", re.IGNORECASE),\
+            re.compile(r"Zuckerberg", re.IGNORECASE),\
         ],\
         'text':"sure. i've never seen him drink water",\
         'callback':behavior.Talk,\
@@ -419,7 +454,8 @@ data = [\
     {\
 # Name all of the robots on Mars.     There are four robots on Mars: Sojourner, Spirit, Opportunity, and Curiosity. Three more crashed on landing.
         'pattern':[\
-            re.compile(r"Name all of the robots on Mars", re.IGNORECASE),\
+            re.compile(r"Name all of", re.IGNORECASE),\
+            re.compile(r"on Mars", re.IGNORECASE),\
         ],\
         'text':"There are four robots on Mars: Sojourner, Spirit, Opportunity, and Curiosity. Three more crashed on landing",\
         'callback':behavior.Talk,\
@@ -427,7 +463,8 @@ data = [\
     {\
 # Do you think robots are a threat to humanity?   No. Humans are the real threat to humanity.
         'pattern':[\
-            re.compile(r"Do you think robots are a threat to humanity", re.IGNORECASE),\
+            re.compile(r"Do you think", re.IGNORECASE),\
+            re.compile(r"threat to", re.IGNORECASE),\
         ],\
         'text':"No. Humans are the real threat to humanity",\
         'callback':behavior.Talk,\
