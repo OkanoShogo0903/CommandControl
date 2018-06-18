@@ -6,6 +6,7 @@ import types
 import re
 import XmlPerser as xml_data
 import google_tts
+import subprocess
 #import CommandControl as cc
 
 # [ParameterStart]----------------------->
@@ -24,8 +25,12 @@ class Behavior():
         print("A :", text)
         #self.picoSpeaker(text)
         #google_tts.say(text)
-        voice_cmd = '/usr/bin/picospeaker %s' %text
-        subprocess.call(voice_cmd.strip().split(' '))
+        try:
+            voice_cmd = '/usr/bin/picospeaker %s' %text
+            subprocess.call(voice_cmd.strip().split(' '))
+            print "[PICO] " + text
+        except OSError:
+            print "[PICO] Speacker is not activate. Or not installed picospeaker."
         return True
 
 
