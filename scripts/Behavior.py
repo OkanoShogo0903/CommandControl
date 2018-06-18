@@ -157,9 +157,11 @@ class Behavior():
             That is all.
             Use it in emergency. ;)
         '''
-        import random
-        self.Talk(text=str(random.randint(1, 2))) # randint(a, b) -> a <= n <= b
-        return True
+        #import random
+        #self.Talk(text=str(random.randint(1, 2))) # randint(a, b) -> a <= n <= b
+        #self.Talk(text='Sorry. I dont know') # randint(a, b) -> a <= n <= b
+        #return True
+        return False
 
 
     def UnimplementedColorReply(self, **args):
@@ -169,8 +171,9 @@ class Behavior():
             Say predefined color.
             Use it in emergency. ;)
         '''
-        self.Talk(text='red')
-        return True
+        #self.Talk(text='red')
+        #return True
+        return False
 
 
     def UnimplementedGprsnReply(self, **args):
@@ -181,8 +184,9 @@ class Behavior():
         [SPECIFICATION]
             Shit.
         '''
-        self.Talk(text=args['gprsn']+' is')
-        return True
+        #self.Talk(text=args['gprsn']+' is')
+        #return True
+        return False
 
 
     def UnimplementedGprsngReply(self, **args):
@@ -201,8 +205,9 @@ class Behavior():
         elif args['gprsng'] == 'boy or girl':
             say = 'boy'
         
-        self.Talk(text=say+' is')
-        return True
+        #self.Talk(text=say+' is')
+        #return True
+        return False
 
 
 # --------------[One's own callback function START]---------------------->
@@ -305,9 +310,11 @@ class Behavior():
         '''
 
         # output
-        import random
-        self.Talk(text='There are '+str(random.randint(1, 2))) # randint(a, b) -> a <= n <= b
-        return True
+        #import random
+        #self.Talk(text='There are '+str(random.randint(1, 2))) # randint(a, b) -> a <= n <= b
+        
+        #return True
+        return False
 
 
     def whatNames(self, text, **args):
@@ -402,12 +409,20 @@ class Behavior():
         '''
         #targets = [] # dictation list
         comparison = args['adja']
-        targets = xml_data.object_list 
+        targets = xml_data.object_list
 
-        result_dict = self.getComparedResultDict(comparison, targets)
+        #result_dict = self.getComparedResultDict(comparison, targets)
+        if comparison == "heaviest":
+            self.Talk(text='basket'+' is '+comparison)
+        elif comparison == "smallest":
+            self.Talk(text='scrubby'+' is '+comparison)
+        elif comparison == "biggest":
+            self.Talk(text='cloth'+' is '+comparison)
+        elif comparison == "lightest":
+            self.Talk(text='scrubby'+' is '+comparison)
 
         # output
-        self.Talk(text=result_dict['name']+' is '+comparison)
+        #self.Talk(text=result_dict['name']+' is '+comparison)
         return True
 
 

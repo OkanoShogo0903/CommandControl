@@ -2,16 +2,17 @@
 # reference : https://github.com/kyordhel/GPSRCmdGen
 
 # [ParameterStart]----------------------->
-IS_ROS_ACTIVE = False
+IS_ROS_ACTIVE = True
 INTERVAL_TALK_END_TO_START = 5.0 # sec
 match_ratio_threshold = 0.7 # 0 ~ 1
-is_do_input_test = True
+is_do_input_test = False
 # [ParameterEnd]------------------------
 
 import json
 import re
 import datetime
 import difflib
+import time
 
 import Behavior
 import XmlPerser as xml_data
@@ -78,48 +79,42 @@ def SpeechTextToBehavior(text, spr = True, gpsr = False):
 
                     if isSimilarRegexpBlock(captures):
                         print("captures     :",captures)
-                        print("captures len :",len(captures))
+                        # Warnign !!! -->
+                        # <---
+                        try:
+                            speak('Your question is \"'+str(q_data['textbook_sentence'])+'\"')
+                        except:
+                            speak('Your question is \"'+str(text)+'\"')
+
                         if ('text' in q_data) and (len(captures) != 0): # or text element is existting
-                            print('hoge1')
+                            # Contain variable
                             if q_data['callback'](text=q_data['text'], **captures) is not False:
-                                print('end~')
                                 return True
                             else:
-                                print('end=')
                                 pass
                         elif len(captures) != 0:
-                            print('hoge2')
                             if q_data['callback'](**captures) is not False:
-                                print('end~')
                                 return True
                             else:
-                                print('end=')
                                 pass
                         elif 'text' in q_data:
-                            print('hoge3')
+                            # Prefix
                             if q_data['callback'](text=q_data['text']) is not False:
-                                print('end~')
                                 return True
                             else:
-                                print('end=')
                                 pass
                         else:
-                            print('hoge4')
                             if q_data['callback']() is not False:
-                                print('end~')
                                 return True
                             else:
-                                print('end=')
                                 pass
     except:
         import traceback
         print(traceback.format_exc())
         traceback.print_exc()
 
-    #print('A : Please talk again')
-    #Behavior.Behavior().picoSpeaker('Please talk again')
-    print("A : Sorry. I don't know")
-    speak('Sorry. I do not know')
+    print("A : Sorry. I dont know")
+    speak('Sorry. I dont know')
 
     return False
 
@@ -223,7 +218,7 @@ def riddleWordCB(msg):
     #global last_time_stamp
     # BROCK PATTERN ---------->
     word = msg.data
-    word.count(' ')
+    #word.count(' ')
     if 'Sorry' in msg.data:
         print '!'*50
 
@@ -245,14 +240,10 @@ def riddleWordCB(msg):
             #mute.mute()
 
             # Process start --->
-            #if voice_dict['time_stamp'] > last_time_stamp + datetime.timedelta(seconds=INTERVAL_TALK_END_TO_START):
-            #last_time_stamp = datetime.datetime.now()
             
             #Behavior.Behavior().picoSpeaker('Your question is ' + word)
-            speak('Your question is '+str(word))
-            rospy.sleep(2) # sec
             answer.data = str(SpeechTextToBehavior(word, spr = True))
-            rospy.sleep(3) # sec
+            rospy.sleep(2) # sec
             # Process end <---
 
             mutex = True
@@ -262,7 +253,6 @@ def riddleWordCB(msg):
 
     print "publish : " + str(answer.data)
     answer_pub.publish(answer)
-
 
 
 if IS_ROS_ACTIVE:

@@ -1,46 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
 <categories>
   <category name="drinks" defaultLocation="counter" room="kitchen">
-    <object name="coke" weight="100" size="100" color="red" num="1" />
-    <object name="grape juice" weight="100" size="100" color="white" num="1" />
-    <object name="orange juice" weight="100" size="100" color="yellow" num="1" />
-    <object name="sprite" weight="100" size="100" color="green" num="1" />
+    <object name="chocolate drink"  weight="21" size="3" color="brown" num="1" />
+    <object name="coke"             weight="19" size="6" color="red" num="1" />
+    <object name="grape juice"      weight="17" size="8" color="white" num="1" />
+    <object name="orange juice"     weight="18" size="9" color="yellow" num="1" />
+    <object name="sprite"           weight="20" size="7" color="green" num="1" />
   </category>
   <category name="cleaning stuff" defaultLocation="side table" room="bedroom">
-    <object name="cloth" weight="100" size="100" color="purple" num="1" />
-    <object name="scrubby" weight="100" size="100" color="yellow" num="1" />
-    <object name="sponge" weight="100" size="100" color="blue" num="1" />
+    <object name="cloth"            weight="9" size="26" color="purple" num="1" />
+    <object name="scrubby"          weight="1" size="1" color="yellow" num="1" />
+    <object name="sponge"           weight="2" size="2" color="blue" num="1" />
   </category>
   <category name="snacks" defaultLocation="bookcase" room="living room">
-    <object name="crackers" weight="100" size="100" color="yellow" num="1" />
-    <object name="potato chips" weight="100" size="100" color="brack" num="1" />
-    <object name="pringles" weight="100" size="100" color="green" num="1" />
+    <object name="crackers"         weight="10" size="15" color="yellow" num="1" />
+    <object name="potato chips"     weight="12" size="23" color="brack" num="1" />
+    <object name="pringles"         weight="14" size="22" color="green" num="1" />
   </category>
   <category name="fruits" defaultLocation="bookcase" room="living room">
-    <object name="apple" weight="100" size="100" color="red" num="1" />
-    <object name="orange" weight="100" size="100" color="yellow" num="1" />
-    <object name="paprika" weight="100" size="100" color="red" num="1" />
+    <object name="apple"            weight="23" size="4" color="red" num="1" />
+    <object name="orange"           weight="24" size="5" color="yellow" num="1" />
+    <object name="paprika"          weight="16" size="10" color="red" num="1" />
   </category>
   <category name="container" defaultLocation="end table" room="living room">
-    <object name="basket" weight="100" size="100" color="white" num="1" />
-    <object name="bag" weight="100" size="100" color="pink" num="1" />
-    <object name="tray" weight="100" size="100" color="white" num="1" />
-    <object name="chocolate drink" weight="100" size="100" color="brown" num="1" />
+    <object name="basket"           weight="25" size="25" color="white" num="1" />
+    <object name="bag"              weight="3"  size="21" color="pink" num="1" />
+    <object name="tray"             weight="15" size="24" color="white" num="1" />
   </category>
   <category name="food" defaultLocation="cupboard" room="kitchen">
-    <object name="cereal" weight="100" size="100" color="blue" num="1" />
-    <object name="noodles" weight="100" size="100" color="white" num="1" />
-    <object name="sausages" weight="100" size="100" color="blue" num="1" />
+    <object name="cereal"           weight="11" size="11" color="blue" num="1" />
+    <object name="noodles"          weight="13" size="16" color="white" num="1" />
+    <object name="sausages"         weight="22" size="17" color="blue" num="1" />
   </category>
   <category name="cutlery" defaultLocation="storage table" room="kitchen">
-    <object name="bowl" weight="100" size="100" color="green" num="1" />
-    <object name="cup" weight="100" size="100" color="green" num="1" />
-    <object name="dish" weight="100" size="100" color="green" num="1" />
+    <object name="bowl"             weight="7" size="18" color="green" num="1" />
+    <object name="cup"              weight="6" size="19" color="green" num="1" />
+    <object name="dish"             weight="8" size="20" color="green" num="1" />
   </category>
   <category name="tableware" defaultLocation="storage table" room="kitchen">
-    <object name="knife" weight="100" size="100" color="green" num="1" />
-    <object name="fork" weight="100" size="100" color="green" num="1" />
-    <object name="spoon" weight="100" size="100" color="green" num="1" />
+    <object name="knife"            weight="4" size="12" color="green" num="1" />
+    <object name="fork"             weight="5" size="13" color="green" num="1" />
+    <object name="spoon"            weight="5.5" size="14" color="green" num="1" />
   </category>
 </categories>                                                                                           
 

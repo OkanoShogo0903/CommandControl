@@ -105,8 +105,10 @@ data = [\
         #$objq = What names are stored in the {placement}?
         #$objq = What objects are stored in the {placement}?
         'pattern':[\
-                re.compile(r'in the (?P<name>.+)', re.IGNORECASE),\
-                re.compile(r'in the (?P<name>\w+)', re.IGNORECASE)\
+                re.compile(r'store in the (?P<name>.+)', re.IGNORECASE),\
+                re.compile(r'store in the (?P<name>\w+)', re.IGNORECASE),\
+                re.compile(r'stored in the (?P<name>.+)', re.IGNORECASE),\
+                re.compile(r'stored in the (?P<name>\w+)', re.IGNORECASE),\
             ],\
         #'pattern_variable':{'room':'name'},\
         'text':'it in $name',\
@@ -150,7 +152,7 @@ data = [\
         #No9-2
         #$objq = Which is the $adja ({category} | name)?
         #$adja = heaviest | smallest | biggest | lightest
-        'pattern':[re.compile(r'the (?P<adja>\w+) object', re.IGNORECASE)],\
+        'pattern':[re.compile(r'the (?P<adja>\w+) o', re.IGNORECASE)],\
         'callback':behavior.whichIsTheMost,\
         #'callback':behavior.TwoObjectComparison,\
     },\
